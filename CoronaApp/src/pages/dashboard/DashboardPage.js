@@ -9,7 +9,7 @@ class DashboardPage extends Component {
               <Text>
                   Hello Dashboard
               </Text>
-              <CardComponent/>
+              <CardComponent count="1100" header="CONFIRMED" color="red"/>
            </View>
         )
      }

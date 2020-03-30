@@ -7,9 +7,12 @@ class CardComponent extends Component {
     constructor(props){
         super(props);
         this.state={
-            count: '1200',
+            /*count: '1200',
             header: 'CONFIRMED',
-            color: 'red'
+            color: 'red'*/
+            count: props.count,
+            header: props.header,
+            color: props.color
         }
     }
 
