@@ -3,17 +3,42 @@ import { View, Text,StyleSheet } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faMapMarkerAlt,faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import API from '../../api/Api'
+import LocationSetter from '../../utils/LocationSetter'
 
 class LocationComponent extends Component {
     constructor(props){
         super(props);
         this.state={
-            country:"India"
+            country:''
         }
     }
 
+    componentDidMount = () =>{
+        this.getData()
+       }
+
+    getData = () => {
+        //console.log(LocationSetter.getCurrentCountry());
+        LocationSetter.getCurrentCountry()
+        .then((res) => {
+            {
+              console.log(res);
+              this.setState({
+                  country: res
+              });
+            }
+          })
+          .catch(function(error) {
+              console.log("What");
+              alert(error.message);
+              });
+       };
+
     render(){
+        
         return (
+            //API.getWorldStats().then(res){this.state.country=res}
             <View>
               <Text style={styles.titleText}>
                  GoCorona
