@@ -6,11 +6,17 @@ import { faMapMarkerAlt,faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import API from '../../api/Api'
 import LocationSetter from '../../utils/LocationSetter'
 
+import { connect } from 'react-redux';
+import { changeCountry } from '../../actions/countryAction';
+import { bindActionCreators } from 'redux';
+
 class LocationComponent extends Component {
+    //static country = "xyz";
+    
     constructor(props){
         super(props);
         this.state={
-            country:''
+            country:'asd'
         }
     }
 
@@ -19,6 +25,7 @@ class LocationComponent extends Component {
        }
 
     getData = () => {
+        let { country, actions } = this.props;
         //console.log(LocationSetter.getCurrentCountry());
         LocationSetter.getCurrentCountry()
         .then((res) => {
@@ -27,6 +34,7 @@ class LocationComponent extends Component {
               this.setState({
                   country: res
               });
+              changeCountry(res);
             }
           })
           .catch(function(error) {
@@ -44,7 +52,7 @@ class LocationComponent extends Component {
                  GoCorona
               </Text>
               <Text style={styles.locationText}>
-                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.state.country} {" "}
+                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.country} {" "}
                 <Text style={styles.changeLocationText}>Change Location</Text>
                 {" "}<FontAwesomeIcon style={styles.editIcon} icon={ faPencilAlt } size={ 8 } color={ 'white' } />
               </Text>
@@ -52,7 +60,7 @@ class LocationComponent extends Component {
         )
     }
 }
-export default LocationComponent;
+//export default LocationComponent;
 
 
 const styles = StyleSheet.create({
@@ -72,3 +80,17 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline'
     }
 });
+
+const mapStateToProps = state => ({
+    country: state.country,
+  });
+  
+  const ActionCreators = Object.assign(
+    {},
+    changeCountry,
+  );
+  const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(ActionCreators, dispatch),
+  });
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(LocationComponent)
