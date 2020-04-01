@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import CardComponent from '../../components/card/CardComponent'
 import { connect } from 'react-redux';
+import {useSelector} from 'react-redux';
 import LocationComponent from '../../components/location/LocationComponent'
 class DashboardPage extends Component {
     render() {
+       //const cntry = useSelector(state => state.country);
        //console.log("Country"+this.props.country[0]);
         return (
            <View style={{flex: 1, flexDirection: 'column'}}>

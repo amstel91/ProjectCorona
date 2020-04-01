@@ -37,7 +37,7 @@ class LocationComponent extends Component {
               //this.setState({
               //    country: res
               //});
-              changeCountry(res);
+              this.props.changeCountry(res);
               //this.props.dispatch(changeCountry(res));
               console.log(this.props.country);
             }
@@ -89,16 +89,10 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     country: state.country,
   });
-  
-  const ActionCreators = Object.assign(
-    {},
-    changeCountry,
-  );
-  const mapDispatchToProps = dispatch => {
-      console.log("In Dispatch");
-      return {
-    actions: bindActionCreators(ActionCreators, dispatch)
-  }
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({changeCountry}, dispatch)
 }
+
   
   export default connect(mapStateToProps, mapDispatchToProps)(LocationComponent)
