@@ -39,7 +39,7 @@ class LocationComponent extends Component {
               //});
               this.props.changeCountry(res);
               //this.props.dispatch(changeCountry(res));
-              console.log(this.props.country);
+              console.log(this.props.country.countryName);
             }
           })
           .catch(function(error) {

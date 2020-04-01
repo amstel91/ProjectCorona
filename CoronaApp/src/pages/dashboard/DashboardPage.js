@@ -5,13 +5,24 @@ import { connect } from 'react-redux';
 import {useSelector} from 'react-redux';
 import LocationComponent from '../../components/location/LocationComponent'
 class DashboardPage extends Component {
+   state ={
+      dashCountry:'abc'
+   }
+componentWillReceiveProps(nextProp)
+{
+   console.log(nextProp.country.countryName);
+   this.setState({
+      dashCountry:nextProp.country.countryName
+   });
+}
+
     render() {
        //const cntry = useSelector(state => state.country);
        //console.log("Country"+this.props.country[0]);
         return (
            <View style={{flex: 1, flexDirection: 'column'}}>
               <Text>
-                  {this.props.country[0]}
+                  {this.state.dashCountry}
               </Text>
               <CardComponent count="1100" header="CONFIRMED" color="red"/>
               <CardComponent count="800" header="ACTIVE" color="red"/>
