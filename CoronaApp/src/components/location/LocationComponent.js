@@ -10,31 +10,36 @@ import { connect } from 'react-redux';
 import { changeCountry } from '../../actions/countryAction';
 import { bindActionCreators } from 'redux';
 
+//@connect(state => ({risk_level: state.risk_level.risk_level}, {saveRisk}))
+
 class LocationComponent extends Component {
     //static country = "xyz";
     
-    constructor(props){
+    /*constructor(props){
         super(props);
         this.state={
             country:'asd'
         }
-    }
+    }*/
 
     componentDidMount = () =>{
         this.getData()
-       }
+    }
 
     getData = () => {
-        let { country, actions } = this.props;
+        
         //console.log(LocationSetter.getCurrentCountry());
         LocationSetter.getCurrentCountry()
         .then((res) => {
             {
+                //let { country, actions } = this.props;
               console.log(res);
-              this.setState({
-                  country: res
-              });
+              //this.setState({
+              //    country: res
+              //});
               changeCountry(res);
+              //this.props.dispatch(changeCountry(res));
+              console.log(this.props.country);
             }
           })
           .catch(function(error) {
@@ -89,8 +94,11 @@ const mapStateToProps = state => ({
     {},
     changeCountry,
   );
-  const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(ActionCreators, dispatch),
-  });
+  const mapDispatchToProps = dispatch => {
+      console.log("In Dispatch");
+      return {
+    actions: bindActionCreators(ActionCreators, dispatch)
+  }
+}
   
   export default connect(mapStateToProps, mapDispatchToProps)(LocationComponent)

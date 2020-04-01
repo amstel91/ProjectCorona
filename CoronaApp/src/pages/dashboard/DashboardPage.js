@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import LocationComponent from '../../components/location/LocationComponent'
 class DashboardPage extends Component {
     render() {
-       console.log("Country"+this.props.country[0]);
+       //console.log("Country"+this.props.country[0]);
         return (
            <View style={{flex: 1, flexDirection: 'column'}}>
               <Text>
