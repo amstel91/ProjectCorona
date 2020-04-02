@@ -63,21 +63,50 @@ static getDerivedStatFromProps(nextPros, prevState)
 }
 */
     render() {
+
+      const line1 = {
+         labels : ['','','','','',''],
+         datasets: [
+           {
+             data: [ 12, 3, 5, 10, 44, 34 ],
+             strokeWidth: 3, // optional
+           },
+         ],
+       };
+       const line2 = {
+         labels : ['','','','','',''],
+         datasets: [
+           {
+             data: [ 12, 3, 5, 10, 44, 34 ],
+             strokeWidth: 3, // optional
+           },
+         ],
+       };const line3 = {
+         labels : ['','','','','',''],
+         datasets: [
+           {
+             data: [ 12, 3, 5, 10, 44, 34 ],
+             strokeWidth: 3, // optional
+           },
+         ],
+       };const line4 = {
+         labels : ['','','','','',''],
+         datasets: [
+           {
+             data: [ 12, 3, 5, 10, 44, 34 ],
+             strokeWidth: 3, // optional
+           },
+         ],
+       };
        //const cntry = useSelector(state => state.country);
        //console.log("Country"+this.props.country[0]);
        //if(this.state.dashCountry == '') return null;
         return (
            <View style={{flex: 1, flexDirection: 'column'}}>
-              <Text>
-                  {this.state.dashCountry}
-              </Text>
-              <Text>
-                  {this.state.metadata.total_cases}
-              </Text>
-              <CardComponent count={this.state.metadata.total_cases} header="CONFIRMED" color="red"/>
-              <CardComponent count={this.state.metadata.active_cases} header="ACTIVE" color="red"/>
-              <CardComponent count={this.state.metadata.total_recovered} header="RECOVERED" color="red"/>
-              <CardComponent count={this.state.metadata.total_deaths} header="DECEASED" color="red"/>
+              <CardComponent lineData={line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="red"/>
+              <CardComponent lineData={line2} count={this.state.metadata.active_cases} header="ACTIVE" color="red"/>
+              <CardComponent lineData={line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="red"/>
+              <CardComponent lineData={line4} count={this.state.metadata.total_deaths} header="DECEASED" color="red"/>
            </View>
         )
      }
