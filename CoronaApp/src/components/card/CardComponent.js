@@ -17,6 +17,7 @@ class CardComponent extends Component {
     }
 
     componentWillReceiveProps(props) {
+        console.log(this.props.count);
         //const { refresh, id } = this.props;
         if (props.count !== this.state.count) {
           //this.fetchShoes(id)

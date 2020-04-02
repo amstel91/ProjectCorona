@@ -59,7 +59,16 @@ class API{
             .then((res)=>{
                 return new Promise( (resolutionFunc,rejectionFunc) => {
                     res.json().then(function(data){
-                        resolutionFunc(data.results[0].address_components[6].long_name)
+                        let cntry = '';
+                        for(let i = 0; i < data.results[0].address_components.length; i++)
+                        {
+                            //console.log(data.results[0].address_components[i].types[0]);
+                            if(data.results[0].address_components[i].types[0] == "country")
+                                cntry = data.results[0].address_components[i].long_name;
+                        }
+                        console.log(cntry);
+                        //resolutionFunc(data.results[0].address_components[4].long_name)
+                        resolutionFunc(cntry);
                     });
                 });
             })
