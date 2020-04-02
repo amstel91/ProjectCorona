@@ -49,7 +49,10 @@ const styles = StyleSheet.create({
     countText:{
         fontSize: 20,
         fontWeight: '900',
-        zIndex : 1
+        zIndex : 1,
+        position:'absolute',
+        paddingTop:30,
+        paddingLeft:5
     },
     headerText:{
         paddingLeft: 10,
@@ -60,8 +63,11 @@ const styles = StyleSheet.create({
     },
     cardStyle:{
         paddingLeft: 20,
+        paddingTop: 10,
         flex: 1,
         flexDirection: 'row',
         alignContent:'flex-start',
-        color:'red'}
+        color:'red',
+        paddingBottom:0
+    }
 });

@@ -67,6 +67,8 @@ class API{
                                 cntry = data.results[0].address_components[i].long_name;
                         }
                         console.log(cntry);
+                        if(cntry == "United States") //Google Map gives "United States"
+                            cntry = "USA";          //RapidAPI takes "USA"
                         //resolutionFunc(data.results[0].address_components[4].long_name)
                         resolutionFunc(cntry);
                     });

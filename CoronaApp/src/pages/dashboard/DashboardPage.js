@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, Colors } from 'react-native'
 import CardComponent from '../../components/card/CardComponent'
 import Api from '../../api/Api'
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import LocationComponent from '../../components/location/LocationComponent'
 class DashboardPage extends Component {
    state ={
       dashCountry:'',
-      metadata: {total_cases:0, active_cases:0, total_recovered:0, total_deaths:0}
+      metadata: {total_cases:0, active_cases:0, total_recovered:0, total_deaths:0, record_date:''}
    }
 
 componentWillReceiveProps(nextProp)
@@ -102,7 +102,9 @@ static getDerivedStatFromProps(nextPros, prevState)
        //console.log("Country"+this.props.country[0]);
        //if(this.state.dashCountry == '') return null;
         return (
-           <View style={{flex: 1, flexDirection: 'column'}}>
+           <View style={{flex: 1, flexDirection: 'column', paddingTop:0, justifyContent:'space-around'}}>
+              <Text style={styles.dashLabel}>Last Updated</Text>
+              <Text style={styles.dashLabel}>{this.state.metadata.record_date} GMT</Text>
               <CardComponent lineData={line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="red"/>
               <CardComponent lineData={line2} count={this.state.metadata.active_cases} header="ACTIVE" color="red"/>
               <CardComponent lineData={line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="red"/>
@@ -117,3 +119,11 @@ const mapStateToProps = state => ({
  });
 
 export default connect(mapStateToProps)(DashboardPage)
+
+const styles = StyleSheet.create({
+   dashLabel: {
+     backgroundColor: '#FFFFFF',
+     color: '#00AA55',
+     textAlign: 'right'
+   }
+})

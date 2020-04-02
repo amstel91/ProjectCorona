@@ -14,25 +14,26 @@ class Chart extends Component{
         <LineChart
             data={this.props.lineData}
             width={200} // from react-native
-            height={50}
+            height={80}
             withVerticalLabels={false}
             withHorizontalLabels={false}
             withInnerLines={false}
-            withOuterLines={true}
+            withOuterLines={false}
             withDots={false}
             
             chartConfig={{
                 
                 decimalPlaces:0,
                 color: (opacity = 0.5) => `rgba(255, 0, 0, ${opacity})`,
-                backgroundColor: "#ffffff",
-                backgroundGradientFrom: "#ffffff",
-                backgroundGradientTo: "#ffffff",
+                backgroundColor: "#f2f2f2",
+                backgroundGradientFrom: "#f2f2f2",
+                backgroundGradientTo: "#f2f2f2",
                 paddingRight: 0,
             }}
             style={{
                 marginVertical: -8,
-                borderRadius: 16
+                borderRadius: 16,
+                paddingTop: 10
               }}
         />
         </View>
