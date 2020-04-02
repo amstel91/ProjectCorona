@@ -23,7 +23,7 @@ class CardComponent extends Component {
           //this.fetchShoes(id)
             //.then(this.refreshShoeList)
             this.setState({
-                count:this.props.count
+                count:props.count
             })
         }
       }
