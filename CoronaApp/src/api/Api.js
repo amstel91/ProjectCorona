@@ -18,6 +18,7 @@ class API{
     }
 
     static getCountryStats = (countryName) => {
+        console.log(countryName);
         const URL = API.BASE_URL + "/latest_stat_by_country.php?country=" + countryName;
         return fetch(URL, {
             "method": "GET",

@@ -16,6 +16,17 @@ class CardComponent extends Component {
         }
     }
 
+    componentWillReceiveProps(props) {
+        //const { refresh, id } = this.props;
+        if (props.count !== this.state.count) {
+          //this.fetchShoes(id)
+            //.then(this.refreshShoeList)
+            this.setState({
+                count:this.props.count
+            })
+        }
+      }
+
     render(){
         return (
             <View style={styles.cardStyle}>
