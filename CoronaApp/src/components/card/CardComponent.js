@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text,StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGlobe, faChartLine } from '@fortawesome/free-solid-svg-icons'
+import Chart from '../chart/chart'
 
 class CardComponent extends Component {
     constructor(props){
@@ -33,7 +34,7 @@ class CardComponent extends Component {
             <View style={styles.cardStyle}>
                 <View>
                   <Text style={styles.countText}>{this.state.count}</Text>
-                  <FontAwesomeIcon icon={ faChartLine } size={ 20 } color={ 'red' }/>
+                  <Chart lineData={this.props.lineData}/>
                 </View>
                 <View>
                   <Text style={styles.headerText}>{this.state.header}</Text>
@@ -46,13 +47,16 @@ export default CardComponent;
 
 const styles = StyleSheet.create({
     countText:{
-        fontSize: 15,
-        fontWeight: '900'
+        fontSize: 20,
+        fontWeight: '900',
+        zIndex : 1
     },
     headerText:{
-        paddingLeft: 40,
-        fontSize: 40,
-        fontWeight: '900'
+        paddingLeft: 10,
+        fontSize: 20,
+        fontWeight: '900',
+        zIndex : 0,
+        paddingTop : 30
     },
     cardStyle:{
         paddingLeft: 20,
