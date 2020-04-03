@@ -39,7 +39,20 @@ class API{
                 "x-rapidapi-key": API.SIGN_UP_KEY
             }
         })
-            .then((res) => res.json());
+            .then((res) => {
+                return new Promise((resolve,reject)=>{
+                   res.json().then(function(data){
+                      console.log(data);
+                      var activeCases = [];
+                      for(let i = 0;i < data.stat_by_country.length;i++){
+                         var active = data.stat_by_country[i].active_cases
+                         activeCases.push(active);
+                         console.log(active);
+                      }
+                      resolve(activeCases);
+                   });
+                });
+             });
     }
 
     static getCountry = (latitude,longitude) => {
@@ -78,6 +91,55 @@ class API{
                     console.log("What inside");
                     alert(error.message);
                     });
+    }
+
+    static getHistoryByCountry = Country =>{
+        console.log(`Fetching ${Country} 's readings`);
+        let requestOptions = {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+                "x-rapidapi-key": API.SIGN_UP_KEY
+            }
+        };
+
+        const URL = API.BASE_URL + "/cases_by_particular_country.php?country=" + Country;
+        console.log(URL);
+        return fetch(URL, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+                "x-rapidapi-key": "e40ca55336msh0c0aceb4a149847p1f82dejsnff8fb5264622"
+            }})
+        .then((res) => {
+            return new Promise((resolve,reject)=>{
+               res.json().then(function(data){
+                  //console.log(data);
+                  var allCases = [];
+                  var activeCases = [];
+                  var deathCases = [];
+                  var totalCases = [];
+                  var recoveredCases = [];
+                  for(let i = 0;i < data.stat_by_country.length;i++){
+                    var total = data.stat_by_country[i].total_cases.replace(",","");
+                    var active = data.stat_by_country[i].active_cases.replace(",","");
+                    var recovered = data.stat_by_country[i].total_recovered.replace(",","");
+                    var death = data.stat_by_country[i].total_deaths.replace(",","");
+                    totalCases.push(parseInt(total));
+                    activeCases.push(parseInt(active));
+                    recoveredCases.push(parseInt(recovered));              
+                    deathCases.push(parseInt(death));
+                  }
+                  allCases.push(totalCases);
+                  allCases.push(activeCases);
+                  allCases.push(recoveredCases);
+                  allCases.push(deathCases);
+                  resolve(allCases);
+               });
+            });
+         })
+        .catch((error) => reject(console.log(error.message)));
+
     }
 
 }

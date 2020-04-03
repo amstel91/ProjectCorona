@@ -15,12 +15,12 @@ import { bindActionCreators } from 'redux';
 class LocationComponent extends Component {
     //static country = "xyz";
     
-    /*constructor(props){
+    constructor(props){
         super(props);
         this.state={
             country:'asd'
         }
-    }*/
+    }
 
     componentDidMount = () =>{
         this.getData()
@@ -34,9 +34,9 @@ class LocationComponent extends Component {
             {
                 //let { country, actions } = this.props;
               console.log(res);
-              //this.setState({
-              //    country: res
-              //});
+              this.setState({
+                  country: res
+              });
               this.props.changeCountry(res);
               //this.props.dispatch(changeCountry(res));
               console.log(this.props.country.countryName);
@@ -57,7 +57,7 @@ class LocationComponent extends Component {
                  GoCorona
               </Text>
               <Text style={styles.locationText}>
-                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.country} {" "}
+                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.state.country} {" "}
                 <Text style={styles.changeLocationText}>Change Location</Text>
                 {" "}<FontAwesomeIcon style={styles.editIcon} icon={ faPencilAlt } size={ 8 } color={ 'white' } />
               </Text>

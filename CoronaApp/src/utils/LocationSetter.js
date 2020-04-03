@@ -3,7 +3,7 @@ import API from "../api/Api"
 
 class LocationNavigator{
 
-    static getCurrentCountry = () => {
+    static getCurrentCountry =  () => {
         let country = '';
         return new Promise( (resolutionFunc,rejectionFunc) => {
             navigator.geolocation.getCurrentPosition(

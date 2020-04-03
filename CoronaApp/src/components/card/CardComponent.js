@@ -30,14 +30,17 @@ class CardComponent extends Component {
       }
 
     render(){
+
+        let varStyle = this.props.color;
+        console.log(styles[varStyle]);
         return (
-            <View style={styles.cardStyle}>
+            <View style={[styles.cardStyle,styles[varStyle]]}>
                 <View>
-                  <Text style={styles.countText}>{this.state.count}</Text>
-                  <Chart lineData={this.props.lineData}/>
+                  <Text style={[styles.countText,styles[varStyle]]}>{this.state.count}</Text>
+                  <Chart lineData={this.props.lineData} color={this.props.color}/>
                 </View>
                 <View>
-                  <Text style={styles.headerText}>{this.state.header}</Text>
+                  <Text style={[styles.headerText,styles[varStyle]]}>{this.state.header}</Text>
                 </View>
             </View>  
         )
@@ -59,7 +62,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '900',
         zIndex : 0,
-        paddingTop : 30
+        paddingTop : 30,
+        color: 'red',
     },
     cardStyle:{
         paddingLeft: 20,
@@ -67,7 +71,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignContent:'flex-start',
-        color:'red',
         paddingBottom:0
-    }
+    },
+    red: {
+        color: 'red',
+      },
+    blue: {
+        color: 'blue',
+      },
+    green: {
+        color: 'green',
+      },
+    black: {
+        color: 'black',
+      },
 });

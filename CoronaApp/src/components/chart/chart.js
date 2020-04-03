@@ -9,14 +9,17 @@ class Chart extends Component{
     }
 
     render(){
+        console.log("renderring");
+        console.log(this.props.lineData.datasets[0].data.length);
     return (
+        
         <View>
         <LineChart
             data={this.props.lineData}
             width={200} // from react-native
             height={80}
             withVerticalLabels={false}
-            withHorizontalLabels={false}
+            withHorizontalLabels={false}        
             withInnerLines={false}
             withOuterLines={false}
             withDots={false}
@@ -24,7 +27,7 @@ class Chart extends Component{
             chartConfig={{
                 
                 decimalPlaces:0,
-                color: (opacity = 0.5) => `rgba(255, 0, 0, ${opacity})`,
+                color: (opacity = 0.5) => this.props.color,
                 backgroundColor: "#f2f2f2",
                 backgroundGradientFrom: "#f2f2f2",
                 backgroundGradientTo: "#f2f2f2",
