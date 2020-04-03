@@ -30,6 +30,18 @@ class API{
             .then((res) => res.json());
     }
 
+    static getAffectedCountries = () => {
+        const URL = API.BASE_URL + "/affected.php";
+        return fetch(URL, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+                "x-rapidapi-key": API.SIGN_UP_KEY
+            }
+        })
+            .then((res) => res.json());
+    }
+
     static getCountryHistory = (countryName) => {
         const URL = API.BASE_URL + "/cases_by_particular_country.php?country=" + countryName;
         return fetch(URL, {
