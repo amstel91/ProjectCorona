@@ -13,16 +13,17 @@ class Chart extends Component{
         console.log(this.props.lineData.datasets[0].data.length);
     return (
         
-        <View>
+        <View style={{marginLeft:-60}}>
         <LineChart
             data={this.props.lineData}
-            width={200} // from react-native
+            width={250} // from react-native
             height={80}
             withVerticalLabels={false}
             withHorizontalLabels={false}        
             withInnerLines={false}
             withOuterLines={false}
             withDots={false}
+            bezier
             
             chartConfig={{
                 
