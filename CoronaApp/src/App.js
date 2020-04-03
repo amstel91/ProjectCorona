@@ -20,9 +20,11 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import LocationComponent from './components/location/LocationComponent';
+import LocationSelectorComponent from './pages/location/LocationPage';
 import {createStackNavigator} from '@react-navigation/stack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { navigationRef } from './navigation/RootNavigation';
 
 import {
   Header,
@@ -38,7 +40,7 @@ const App: () => React$Node = () => {
   }
   loadData();
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#1081db" translucent = {true} />
       <Stack.Navigator>
         <Stack.Screen name="Dashboard" component={DashboardPage} options={{
@@ -55,6 +57,16 @@ const App: () => React$Node = () => {
               <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' } />
             </View>
           )
+        }} />
+        <Stack.Screen name="Location" component={LocationSelectorComponent} options={{
+          title: "Select Country",
+          headerStyle: {
+            backgroundColor: '#2196f3',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
         }} />
       </Stack.Navigator>
       {/* <StatusBar barStyle="dark-content" />
