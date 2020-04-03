@@ -9,21 +9,17 @@ import LocationSetter from '../../utils/LocationSetter'
 import { connect } from 'react-redux';
 import { changeCountry } from '../../actions/countryAction';
 import { bindActionCreators } from 'redux';
-
-//@connect(state => ({risk_level: state.risk_level.risk_level}, {saveRisk}))
+import * as RootNavigation from '../../navigation/RootNavigation.js';
 
 class LocationComponent extends Component {
-    //static country = "xyz";
-    
-    constructor(props){
-        super(props);
-        this.state={
-            country:'asd'
-        }
-    }
 
     componentDidMount = () =>{
         this.getData()
+    }
+
+    showChangeLocation(){
+        
+        RootNavigation.navigate('Location', {});
     }
 
     getData = () => {
@@ -56,8 +52,8 @@ class LocationComponent extends Component {
               <Text style={styles.titleText}>
                  GoCorona
               </Text>
-              <Text style={styles.locationText}>
-                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.state.country} {" "}
+              <Text style={styles.locationText} onPress={this.showChangeLocation.bind(this)}>
+                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.country} {" "}
                 <Text style={styles.changeLocationText}>Change Location</Text>
                 {" "}<FontAwesomeIcon style={styles.editIcon} icon={ faPencilAlt } size={ 8 } color={ 'white' } />
               </Text>
