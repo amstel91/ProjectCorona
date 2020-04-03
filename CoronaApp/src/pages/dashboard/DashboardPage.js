@@ -70,9 +70,10 @@ componentWillReceiveProps(nextProp)
 populateExactData = (conutry) => {
    API.getHistoryByCountry(conutry)
    .then((res) => {
-      for(let i = 0;i < res[2].length;i++){
-         console.log(res[i]);
-      }
+      // for(let i = 0;i < res[0].length;i++){
+      //    console.log(res[0][i]);
+      // }
+      console.log("Count is "+res[0].length);
       this.setState({
          line1 : {
             datasets: [

@@ -121,14 +121,18 @@ class API{
                   var totalCases = [];
                   var recoveredCases = [];
                   for(let i = 0;i < data.stat_by_country.length;i++){
-                    var total = data.stat_by_country[i].total_cases.replace(",","");
+                    var total = data.stat_by_country[i].new_cases.replace(",","");
                     var active = data.stat_by_country[i].active_cases.replace(",","");
                     var recovered = data.stat_by_country[i].total_recovered.replace(",","");
-                    var death = data.stat_by_country[i].total_deaths.replace(",","");
-                    totalCases.push(parseInt(total));
+                    var death = data.stat_by_country[i].new_deaths.replace(",","");
+                    if(total !== ""){
+                        totalCases.push(parseInt(total));
+                    }
                     activeCases.push(parseInt(active));
-                    recoveredCases.push(parseInt(recovered));              
-                    deathCases.push(parseInt(death));
+                    recoveredCases.push(parseInt(recovered)); 
+                    if(death !== ""){
+                        deathCases.push(parseInt(death));
+                    }             
                   }
                   allCases.push(totalCases);
                   allCases.push(activeCases);
