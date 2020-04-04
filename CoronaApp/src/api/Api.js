@@ -1,43 +1,53 @@
+import {apikeyArr} from '../constants/ApiKeys'
 class API{
     static BASE_URL = "https://coronavirus-monitor.p.rapidapi.com/coronavirus";
     static SIGN_UP_KEY = "290f4b382cmsh9de1ee4ea317518p1da941jsnb964a4ce8b05";
     static GOOGLEKEY = "AIzaSyDzELvXqAsZsPsLoovMulX_IO64LFj_Ll0";
     static MAPSURL = "https://maps.googleapis.com/maps/api/geocode/json";
     static SIGN_UP_KEY_SECONDARY = "e40ca55336msh0c0aceb4a149847p1f82dejsnff8fb5264622";
+    static GENERATED_KEY = "";
+    static keyGenerator = () =>{
+        let idx = Math.floor(Math.random()*apikeyArr.length);
+        console.log(idx);
+        this.GENERATED_KEY = apikeyArr[idx];
+    }
 
     static getWorldStats = () => {
         const URL = API.BASE_URL + "/worldstat.php";
+        API.keyGenerator();
         //console.log(URL);
         return fetch(URL, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-                "x-rapidapi-key": API.SIGN_UP_KEY
+                "x-rapidapi-key": API.GENERATED_KEY
             }
         })
             .then((res) => res.json());
     }
 
     static getCountryStats = (countryName) => {
+        API.keyGenerator();
         //console.log(countryName);
         const URL = API.BASE_URL + "/latest_stat_by_country.php?country=" + countryName;
         return fetch(URL, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-                "x-rapidapi-key": API.SIGN_UP_KEY
+                "x-rapidapi-key": API.GENERATED_KEY
             }
         })
             .then((res) => res.json());
     }
 
     static getAffectedCountries = () => {
+        API.keyGenerator();
         const URL = API.BASE_URL + "/affected.php";
         return fetch(URL, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-                "x-rapidapi-key": API.SIGN_UP_KEY
+                "x-rapidapi-key": API.GENERATED_KEY
             }
         })
             .then((res) => res.json());
@@ -82,12 +92,13 @@ class API{
     }
 
     static getHistoryByCountry = Country =>{
+        API.keyGenerator();
         //console.log(`Fetching ${Country} 's readings`);
         let requestOptions = {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-                "x-rapidapi-key": API.SIGN_UP_KEY
+                "x-rapidapi-key": API.GENERATED_KEY
             }
         };
 
@@ -97,7 +108,7 @@ class API{
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-                "x-rapidapi-key": API.SIGN_UP_KEY_SECONDARY
+                "x-rapidapi-key": API.GENERATED_KEY
             }})
         .then((res) => {
             return new Promise((resolve,reject)=>{
