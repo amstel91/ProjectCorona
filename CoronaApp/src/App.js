@@ -15,6 +15,7 @@ import {
   Button,
   View,
   Text,
+  TouchableOpacity,
   StatusBar,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -24,7 +25,7 @@ import LocationSelectorComponent from './pages/location/LocationPage';
 import WorldInfoComponent from './pages/WorldInfo/WorldInfoPage'
 import {createStackNavigator} from '@react-navigation/stack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faGlobe, faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faFileAlt, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { navigationRef } from './navigation/RootNavigation';
 import * as RootNavigation from './navigation/RootNavigation';
 import OSSComponent from './pages/DataSource/SourceOfData'
@@ -45,12 +46,12 @@ const App: () => React$Node = () => {
   loadData();
   let gotoWorlInfoPage=()=>{
         console.log("goWorld");
-    RootNavigation.navigate('WorldInfo', {});
+        RootNavigation.navigate('WorldInfo', {});
   }
   let gotoOSSPage=()=>{
     console.log("OSSAndDataSource");
-RootNavigation.navigate('OSSAndDataSource', {});
-}
+    RootNavigation.navigate('OSSAndDataSource', {});
+  }
   return (
     <NavigationContainer ref={navigationRef}>
       <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#1081db" translucent = {true} />
@@ -66,8 +67,15 @@ RootNavigation.navigate('OSSAndDataSource', {});
           },
           headerRight: () => (
             <View style={styles.global}>
-              <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' } onPress={gotoWorlInfoPage}/>
-              <FontAwesomeIcon icon={ faFileAlt } size={ 24 } color={ 'white' } onPress={gotoOSSPage}/>
+              <TouchableOpacity style={{flexDirection: 'column', flex: 1}} onPress={gotoWorlInfoPage}>
+                <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' }/>
+                <Text style={styles.iconText}>World</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:20,marginRight:10}} onPress={gotoOSSPage}>
+                <FontAwesomeIcon icon={ faInfoCircle } size={ 24 } color={ 'white' } />
+                <Text style={styles.iconText}>About</Text>
+              </TouchableOpacity>
+              
             </View>
           )
         }} />
@@ -194,6 +202,11 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  iconText:{
+    fontSize: 9,
+    color:Colors.white,
+    textAlign:"center"
+  }
 });
 
 export default App;

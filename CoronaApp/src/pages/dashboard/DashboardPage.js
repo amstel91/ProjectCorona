@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Colors } from 'react-native'
+import { View, Text, StyleSheet, Colors,ActivityIndicator } from 'react-native'
 import CardComponent from '../../components/card/CardComponent'
 import Api from '../../api/Api'
 import { connect } from 'react-redux';
@@ -151,15 +151,9 @@ static getDerivedStatFromProps(nextPros, prevState)
        if(this.state.line4.datasets[0].data === null){
           //console.log('if con');
          return (
-            <View style={{flex: 1, flexDirection: 'column', paddingTop:0, justifyContent:'flex-start'}}>
-               <View style={{backgroundColor: '#FFFFFF',paddingVertical:5,paddingHorizontal:10}}>
-                  <Text style={styles.dashCountryText}>Statistics for {this.state.dashCountry}</Text>
-                  <Text style={styles.dashLabelText}>LAST UPDATED</Text>
-                  <Text style={styles.dashLabel}>{this.translateToLocalDate(this.state.metadata.record_date)}</Text>
-               </View>
-               <Text>Hold on, we are learning how to make it fast</Text>
-               
-             </View>
+            <View style={[styles.container, styles.horizontal]}>
+               <ActivityIndicator size="large" color="#2196f3" />
+            </View>
          )
        }
        else
@@ -210,5 +204,14 @@ const styles = StyleSheet.create({
       fontWeight:"bold",
       fontSize:10,
       textAlign: 'right'
-   }
+   },
+   container: {
+      flex: 1,
+      justifyContent: "center"
+    },
+    horizontal: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      padding: 10
+    }
 })
