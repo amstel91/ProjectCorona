@@ -42,11 +42,14 @@ class WorldInfoComponent extends Component{
 
     render(){
         return(
-            <View style={{flexDirection:"row",flex:1}}>
+            <View style={{flexDirection:"column",flex:1}}>
+                <Text style={styles.dashLabel}>Last Updated</Text>
+                <Text style={styles.dashLabel}>{this.state.data.statistic_taken_at} GMT</Text>
+                <View style={{flexDirection:"row"}}>
                 <View style={styles.dataCard}>
                     <View style={styles.dataDiv}>
                         <Text style={{textAlign:'center', fontSize:25, color:'red'}}>Confirmed</Text>
-        <Text style={{textAlign:'center', fontSize:20, color:'red'}}>{this.state.data.total_cases}</Text>
+                        <Text style={{textAlign:'center', fontSize:20, color:'red'}}>{this.state.data.total_cases}</Text>
                     </View>
                     <View style={styles.dataDiv}>
                         <Text style={{textAlign:'center', fontSize:25, color:'green'}}>Recovered</Text>
@@ -63,7 +66,7 @@ class WorldInfoComponent extends Component{
                         <Text style={{textAlign:'center', fontSize:20, color:'black'}}>{this.state.data.total_deaths}</Text>
                     </View>
                 </View>
-                
+                </View>
             </View>
         )
     }
@@ -74,14 +77,20 @@ const styles = StyleSheet.create({
         height: 200,
         flexDirection:"column",
         flex:1,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#f5f5ff',
     },
     dataDiv:{
         height: 100,
         justifyContent: 'center',
         borderColor: '#000',
         borderWidth: 0.5,
-    }
+        borderRadius: 10
+    },
+    dashLabel: {
+        backgroundColor: '#FFFFFF',
+        color: '#00AA55',
+        textAlign: 'right'
+      }
 });
 
 export default WorldInfoComponent;
