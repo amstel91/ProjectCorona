@@ -27,6 +27,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { navigationRef } from './navigation/RootNavigation';
 import * as RootNavigation from './navigation/RootNavigation';
+import OSSComponent from './pages/DataSource/SourceOfData'
 
 import {
   Header,
@@ -35,6 +36,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { Directions } from 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 const App: () => React$Node = () => {
   let loadData = () =>{
@@ -45,6 +47,10 @@ const App: () => React$Node = () => {
         console.log("goWorld");
     RootNavigation.navigate('WorldInfo', {});
   }
+  let gotoOSSPage=()=>{
+    console.log("OSSAndDataSource");
+RootNavigation.navigate('OSSAndDataSource', {});
+}
   return (
     <NavigationContainer ref={navigationRef}>
       <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#1081db" translucent = {true} />
@@ -61,6 +67,7 @@ const App: () => React$Node = () => {
           headerRight: () => (
             <View style={styles.global}>
               <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' } onPress={gotoWorlInfoPage}/>
+              <Text style={styles.TextStyle} onPress={gotoOSSPage} >OSS.</Text>
             </View>
           )
         }} />
@@ -76,6 +83,16 @@ const App: () => React$Node = () => {
         }} />
         <Stack.Screen name="WorldInfo" component={WorldInfoComponent} options={{
           title: "World Information",
+          headerStyle: {
+            backgroundColor: '#2196f3',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }} />
+        <Stack.Screen name="OSSAndDataSource" component={OSSComponent} options={{
+          title: "OSS and Data Source",
           headerStyle: {
             backgroundColor: '#2196f3',
           },
@@ -135,8 +152,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lighter,
   },
   global: {
-    position: 'absolute',
-    right: 20,
+    right: 10,
+    justifyContent: 'space-between',
+    flexDirection : 'row',
+  },
+  TextStyle: {
+ 
+    color: '#E91E63',
+    textDecorationLine: 'underline',
+    flex:1,
   },
   body: {
     backgroundColor: Colors.white,
