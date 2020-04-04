@@ -13,7 +13,7 @@ class Chart extends Component{
         //console.log(this.props.lineData.datasets[0].data.length);
     return (
         
-        <View style={{marginLeft:-60}}>
+        <View style={{marginLeft:-60,backgroundColor:"#ffffff"}}>
         <LineChart
             data={this.props.lineData}
             width={250} // from react-native
@@ -29,9 +29,9 @@ class Chart extends Component{
                 
                 decimalPlaces:0,
                 color: (opacity = 0.5) => this.props.color,
-                backgroundColor: "#f2f2f2",
-                backgroundGradientFrom: "#f2f2f2",
-                backgroundGradientTo: "#f2f2f2",
+                backgroundColor: "#ffffff",
+                backgroundGradientFrom: "#ffffff",
+                backgroundGradientTo: "#ffffff",
                 paddingRight: 0,
             }}
             style={{

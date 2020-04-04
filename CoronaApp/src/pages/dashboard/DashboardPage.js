@@ -160,17 +160,21 @@ static getDerivedStatFromProps(nextPros, prevState)
        {
           //console.log('else con');
         return (
-           <View style={{flex: 1, flexDirection: 'column', paddingTop:0, justifyContent:'space-around'}}>
-              <View style={{backgroundColor: '#FFFFFF',paddingVertical:5,paddingHorizontal:10}}>
-                  <Text style={styles.dashCountryText}>Statistics for {this.state.dashCountry}</Text>
-                  <Text style={styles.dashLabelText}>LAST UPDATED</Text>
-                  <Text style={styles.dashLabel}>{this.translateToLocalDate(this.state.metadata.record_date)}</Text>
+           <>
+               <View>
+                  <View style={{backgroundColor: '#f9f9f9',paddingVertical:5,paddingHorizontal:10}}>
+                     <Text style={styles.dashCountryText}>Statistics for {this.state.dashCountry}</Text>
+                     <Text style={styles.dashLabelText}>LAST UPDATED</Text>
+                     <Text style={styles.dashLabel}>{this.translateToLocalDate(this.state.metadata.record_date)}</Text>
+                  </View>
                </View>
-              <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="red"/>
-              <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" color="blue"/>
-              <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="green"/>
-              <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DECEASED" color="black"/>
-            </View>
+               <View>
+                  <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="red"/>
+                  <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" color="blue"/>
+                  <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="green"/>
+                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DECEASED" color="black"/>
+               </View>
+            </>
         )
        }
      }
@@ -184,7 +188,6 @@ export default connect(mapStateToProps)(DashboardPage)
 
 const styles = StyleSheet.create({
    dashLabel: {
-     backgroundColor: '#FFFFFF',
      color: '#00AA55',
      textAlign: 'right'
    },
@@ -199,7 +202,6 @@ const styles = StyleSheet.create({
       zIndex: 2
    },
    dashLabelText:{
-      backgroundColor: '#FFFFFF',
       color: '#00AA55',
       fontWeight:"bold",
       fontSize:10,

@@ -3,6 +3,7 @@ import { View, Text,StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGlobe, faChartLine } from '@fortawesome/free-solid-svg-icons'
 import Chart from '../chart/chart'
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 class CardComponent extends Component {
     constructor(props){
@@ -34,15 +35,17 @@ class CardComponent extends Component {
         let varStyle = this.props.color;
         //console.log(styles[varStyle]);
         return (
-            <View style={[styles.cardStyle,styles[varStyle]]}>
-                <View>
-                  <Chart lineData={this.props.lineData} color={this.props.color}/>
-                </View>
-                <View style={{flexDirection: 'column', backgroundColor:'#f2f2f2', paddingRight:15, paddingTop:10}}>
-                  <Text style={[styles.countText,styles[varStyle]]}>{this.state.count}</Text>
-                  <Text style={[styles.headerText,styles[varStyle]]}>{this.state.header}</Text>
-                </View>
-            </View>  
+            <View>
+              <View style={[styles.cardStyle,styles[varStyle]]}>
+                  <View style={{flexDirection:"row",justifyContent:'space-between'}}>
+                    <Chart lineData={this.props.lineData} color={this.props.color}/>
+                    <View style={{flexDirection:"column",alignSelf: 'flex-end',justifyContent:'space-between',paddingRight:20}}>
+                      <Text style={[styles.countText,styles[varStyle]]}>{this.state.count}</Text>
+                      <Text style={[styles.headerText,styles[varStyle]]}>{this.state.header}</Text>
+                    </View>
+                  </View>
+              </View>
+            </View>
         )
     }
 }
@@ -50,25 +53,27 @@ export default CardComponent;
 
 const styles = StyleSheet.create({
     countText:{
-        fontSize: 20,
-        fontWeight: '900',
+        fontSize: 35,
+        fontWeight: 'bold',
         textAlign:'right',
-        alignSelf: 'flex-end'
+        // alignSelf: 'flex-end'
     },
     headerText:{
         fontSize: 20,
         fontWeight: '900',
         textAlign:'right',
-        alignSelf: 'flex-end'
+        // alignSelf: 'flex-end'
     },
     cardStyle:{
-        paddingLeft: 20,
-        paddingTop: 10,
-        flex: 1,
-        flexDirection: 'row',
-        alignContent:'flex-start',
-        paddingBottom:0,
-        justifyContent:'space-between'
+        // flex: 1,
+        // flexDirection: 'row',
+        // alignContent:'flex-start',
+         paddingVertical:30,
+         borderBottomWidth:1,
+         paddingHorizontal:10,
+         borderBottomColor:"#e7e7e7",
+        // justifyContent:'space-between',
+        backgroundColor:Colors.white
     },
     red: {
         color: 'red',
