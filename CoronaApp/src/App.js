@@ -21,10 +21,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import LocationComponent from './components/location/LocationComponent';
 import LocationSelectorComponent from './pages/location/LocationPage';
+import WorldInfoComponent from './pages/WorldInfo/WorldInfoPage'
 import {createStackNavigator} from '@react-navigation/stack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { navigationRef } from './navigation/RootNavigation';
+import * as RootNavigation from './navigation/RootNavigation';
 
 import {
   Header,
@@ -39,6 +41,10 @@ const App: () => React$Node = () => {
     
   }
   loadData();
+  let gotoWorlInfoPage=()=>{
+        console.log("goWorld");
+    RootNavigation.navigate('WorldInfo', {});
+  }
   return (
     <NavigationContainer ref={navigationRef}>
       <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#1081db" translucent = {true} />
@@ -54,12 +60,22 @@ const App: () => React$Node = () => {
           },
           headerRight: () => (
             <View style={styles.global}>
-              <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' } />
+              <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' } onPress={gotoWorlInfoPage}/>
             </View>
           )
         }} />
         <Stack.Screen name="Location" component={LocationSelectorComponent} options={{
           title: "Select Country",
+          headerStyle: {
+            backgroundColor: '#2196f3',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }} />
+        <Stack.Screen name="WorldInfo" component={WorldInfoComponent} options={{
+          title: "World Information",
           headerStyle: {
             backgroundColor: '#2196f3',
           },
