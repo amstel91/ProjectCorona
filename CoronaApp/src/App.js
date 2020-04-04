@@ -24,7 +24,7 @@ import LocationSelectorComponent from './pages/location/LocationPage';
 import WorldInfoComponent from './pages/WorldInfo/WorldInfoPage'
 import {createStackNavigator} from '@react-navigation/stack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import { navigationRef } from './navigation/RootNavigation';
 import * as RootNavigation from './navigation/RootNavigation';
 import OSSComponent from './pages/DataSource/SourceOfData'
@@ -67,7 +67,7 @@ RootNavigation.navigate('OSSAndDataSource', {});
           headerRight: () => (
             <View style={styles.global}>
               <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' } onPress={gotoWorlInfoPage}/>
-              <Text style={styles.TextStyle} onPress={gotoOSSPage} >OSS.</Text>
+              <FontAwesomeIcon icon={ faFileAlt } size={ 24 } color={ 'white' } onPress={gotoOSSPage}/>
             </View>
           )
         }} />
@@ -161,6 +161,9 @@ const styles = StyleSheet.create({
     color: '#E91E63',
     textDecorationLine: 'underline',
     flex:1,
+    alignSelf:'flex-end',
+    paddingLeft: 5,
+    fontSize: 15
   },
   body: {
     backgroundColor: Colors.white,
