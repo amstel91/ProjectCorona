@@ -9,8 +9,8 @@ class Chart extends Component{
     }
 
     render(){
-        console.log("renderring");
-        console.log(this.props.lineData.datasets[0].data.length);
+        //console.log("renderring");
+        //console.log(this.props.lineData.datasets[0].data.length);
     return (
         
         <View style={{marginLeft:-60}}>

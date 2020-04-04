@@ -18,7 +18,7 @@ class CardComponent extends Component {
     }
 
     componentWillReceiveProps(props) {
-        console.log(this.props.count);
+        //console.log(this.props.count);
         //const { refresh, id } = this.props;
         if (props.count !== this.state.count) {
           //this.fetchShoes(id)
@@ -32,7 +32,7 @@ class CardComponent extends Component {
     render(){
 
         let varStyle = this.props.color;
-        console.log(styles[varStyle]);
+        //console.log(styles[varStyle]);
         return (
             <View style={[styles.cardStyle,styles[varStyle]]}>
                 <View>

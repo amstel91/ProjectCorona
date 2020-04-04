@@ -46,24 +46,23 @@ class DashboardPage extends Component {
 
 componentWillReceiveProps(nextProp)
 {
-   console.log(nextProp.country.countryName);
+   //console.log(nextProp.country.countryName);
    this.setState({
       dashCountry:nextProp.country.countryName
    });
    metadata:Api.getCountryStats(nextProp.country.countryName)
    .then((res) => {
       {
-         console.log(res);
+         //console.log(res);
          this.setState({
             metadata:res.latest_stat_by_country[0]
          });
          this.populateExactData(nextProp.country.countryName);
-         console.log(this.state.metadata.total_cases);
+         //console.log(this.state.metadata.total_cases);
       }
    })
    .catch(function(error) {
-        console.log("WhatCountry");
-        alert(error.message);
+        console.log(error.message);
    });
 }
 
@@ -73,7 +72,6 @@ populateExactData = (conutry) => {
       // for(let i = 0;i < res[0].length;i++){
       //    console.log(res[0][i]);
       // }
-      console.log("Count is "+res[0].length);
       this.setState({
          line1 : {
             datasets: [
@@ -140,7 +138,7 @@ static getDerivedStatFromProps(nextPros, prevState)
 */
     render() {
        if(this.state.line4.datasets[0].data === null){
-          console.log('if con');
+          //console.log('if con');
          return (
             <View style={{flex: 1, flexDirection: 'column', paddingTop:0, justifyContent:'flex-start'}}>
                <Text style={styles.dashLabel}>Last Updated</Text>
@@ -152,7 +150,7 @@ static getDerivedStatFromProps(nextPros, prevState)
        }
        else
        {
-          console.log('else con');
+          //console.log('else con');
         return (
            <View style={{flex: 1, flexDirection: 'column', paddingTop:0, justifyContent:'space-around'}}>
               <Text style={styles.dashLabel}>Last Updated</Text>

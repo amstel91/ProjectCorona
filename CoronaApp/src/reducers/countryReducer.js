@@ -5,7 +5,7 @@ countryName: ''
 const countryReducer = (state = initialState, action) => {
 switch(action.type) {
 case COUNTRY_CHANGE:
-    console.log(action.payload);
+    //console.log(action.payload);
 return {
 ...state,
 countryName:action.payload

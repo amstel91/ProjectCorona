@@ -11,14 +11,12 @@ class LocationNavigator{
                     API.getCountry(position.coords.latitude,position.coords.longitude)
                     .then((res) => {
                         {
-                            console.log(res);
                             country = res;
                             resolutionFunc(country);
                         }
                         })
                         .catch(function(error) {
-                            console.log("What");
-                            alert(error.message);
+                            console.log(error.message);
                             rejectionFunc(error.message);
                             });
                 },
