@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {useSelector} from 'react-redux';
 import LocationComponent from '../../components/location/LocationComponent'
 import API from '../../api/Api';
+import AppUtils from '../../utils/AppUtils'
 class DashboardPage extends Component {
    state ={
       dashCountry:'',
@@ -136,13 +137,26 @@ static getDerivedStatFromProps(nextPros, prevState)
    return null;
 }
 */
+
+   translateToLocalDate(date){
+      if(date && date.trim()!=""){
+         let tDate=new Date(date+" GMT");
+         //console.log(tDate.toLocaleString())
+         return AppUtils.getTimeSince(tDate);
+      }
+      return "";
+   }
+
     render() {
        if(this.state.line4.datasets[0].data === null){
           //console.log('if con');
          return (
             <View style={{flex: 1, flexDirection: 'column', paddingTop:0, justifyContent:'flex-start'}}>
-               <Text style={styles.dashLabel}>Last Updated</Text>
-               <Text style={styles.dashLabel}>{this.state.metadata.record_date} GMT</Text>
+               <View style={{backgroundColor: '#FFFFFF',paddingVertical:5,paddingHorizontal:10}}>
+                  <Text style={styles.dashCountryText}>Statistics for {this.state.dashCountry}</Text>
+                  <Text style={styles.dashLabelText}>LAST UPDATED</Text>
+                  <Text style={styles.dashLabel}>{this.translateToLocalDate(this.state.metadata.record_date)}</Text>
+               </View>
                <Text>Hold on, we are learning how to make it fast</Text>
                
              </View>
@@ -153,8 +167,11 @@ static getDerivedStatFromProps(nextPros, prevState)
           //console.log('else con');
         return (
            <View style={{flex: 1, flexDirection: 'column', paddingTop:0, justifyContent:'space-around'}}>
-              <Text style={styles.dashLabel}>Last Updated</Text>
-              <Text style={styles.dashLabel}>{this.state.metadata.record_date} GMT</Text>
+              <View style={{backgroundColor: '#FFFFFF',paddingVertical:5,paddingHorizontal:10}}>
+                  <Text style={styles.dashCountryText}>Statistics for {this.state.dashCountry}</Text>
+                  <Text style={styles.dashLabelText}>LAST UPDATED</Text>
+                  <Text style={styles.dashLabel}>{this.translateToLocalDate(this.state.metadata.record_date)}</Text>
+               </View>
               <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="red"/>
               <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" color="blue"/>
               <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="green"/>
@@ -176,5 +193,22 @@ const styles = StyleSheet.create({
      backgroundColor: '#FFFFFF',
      color: '#00AA55',
      textAlign: 'right'
+   },
+   dashCountryText:{
+      textAlign: 'left',
+      position:'absolute',
+      top:10,
+      left:10,
+      fontSize:15,
+      fontWeight:"bold",
+      color:"gray",
+      zIndex: 2
+   },
+   dashLabelText:{
+      backgroundColor: '#FFFFFF',
+      color: '#00AA55',
+      fontWeight:"bold",
+      fontSize:10,
+      textAlign: 'right'
    }
 })
