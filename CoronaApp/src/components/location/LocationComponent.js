@@ -13,6 +13,13 @@ import * as RootNavigation from '../../navigation/RootNavigation.js';
 
 class LocationComponent extends Component {
 
+    constructor(props){
+        super(props);
+        this.state={
+            AutoCountryName:'Wait'
+        }
+    }
+
     componentDidMount = () =>{
         this.getData()
     }
@@ -29,23 +36,21 @@ class LocationComponent extends Component {
         .then((res) => {
             {
                 //let { country, actions } = this.props;
-              console.log(res);
+              //console.log(res);
               this.setState({
-                  country: res
+                AutoCountryName: res
               });
               this.props.changeCountry(res);
               //this.props.dispatch(changeCountry(res));
-              console.log(this.props.country.countryName);
+              //console.log(this.props.country.countryName);
             }
           })
           .catch(function(error) {
-              console.log("What");
-              alert(error.message);
+              console.log(error.message);
               });
        };
 
     render(){
-        
         return (
             //API.getWorldStats().then(res){this.state.country=res}
             <View>
@@ -53,7 +58,7 @@ class LocationComponent extends Component {
                  GoCorona
               </Text>
               <Text style={styles.locationText} onPress={this.showChangeLocation.bind(this)}>
-                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.country} {" "}
+                <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.state.AutoCountryName} {" "}
                 <Text style={styles.changeLocationText}>Change Location</Text>
                 {" "}<FontAwesomeIcon style={styles.editIcon} icon={ faPencilAlt } size={ 8 } color={ 'white' } />
               </Text>
