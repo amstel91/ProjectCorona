@@ -109,10 +109,10 @@ class API{
                   var totalCases = [];
                   var recoveredCases = [];
                   for(let i = 0;i < data.stat_by_country.length;i+=100){
-                    var total = data.stat_by_country[i].new_cases.replace(",","");
-                    var active = data.stat_by_country[i].active_cases.replace(",","");
-                    var recovered = data.stat_by_country[i].total_recovered.replace(",","");
-                    var death = data.stat_by_country[i].new_deaths.replace(",","");
+                    var total = data.stat_by_country[i].new_cases.replace(/,/g,"");
+                    var active = data.stat_by_country[i].active_cases.replace(/,/g,"");
+                    var recovered = data.stat_by_country[i].total_recovered.replace(/,/g,"");
+                    var death = data.stat_by_country[i].new_deaths.replace(/,/g,"");
                     if(total !== ""){
                         totalCases.push(parseInt(total));
                     }
