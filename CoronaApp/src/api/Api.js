@@ -103,25 +103,36 @@ class API{
             return new Promise((resolve,reject)=>{
                res.json().then(function(data){
                   //console.log(data);
-                  var allCases = [];
-                  var activeCases = [];
-                  var deathCases = [];
-                  var totalCases = [];
-                  var recoveredCases = [];
-                  for(let i = 0;i < data.stat_by_country.length;i+=100){
-                    var total = data.stat_by_country[i].new_cases.replace(/,/g,"");
-                    var active = data.stat_by_country[i].active_cases.replace(/,/g,"");
-                    var recovered = data.stat_by_country[i].total_recovered.replace(/,/g,"");
-                    var death = data.stat_by_country[i].new_deaths.replace(/,/g,"");
-                    if(total !== ""){
+                  let allCases = [];
+                  let activeCases = [];
+                  let deathCases = [];
+                  let totalCases = [];
+                  let recoveredCases = [];
+                  let currentDate = data.stat_by_country[0].record_date.split(" ")[0];
+                  for(let i = 0;i < data.stat_by_country.length;i++){
+                    let date = data.stat_by_country[i].record_date.split(" ")[0];
+                    if(currentDate !== date){
+                        console.log(currentDate);
+                        currentDate = date;
+                        let total = data.stat_by_country[i-1].total_cases.replace(/,/g,"");
+                        let active = data.stat_by_country[i-1].active_cases.replace(/,/g,"");
+                        let recovered = data.stat_by_country[i-1].total_recovered.replace(/,/g,"");
+                        let death = data.stat_by_country[i-1].total_deaths.replace(/,/g,"");
                         totalCases.push(parseInt(total));
-                    }
-                    activeCases.push(parseInt(active));
-                    recoveredCases.push(parseInt(recovered)); 
-                    if(death !== ""){
+                        activeCases.push(parseInt(active));
+                        recoveredCases.push(parseInt(recovered)); 
                         deathCases.push(parseInt(death));
-                    }             
+                    }          
                   }
+                  let finalValue = data.stat_by_country.length - 1;
+                  let total = data.stat_by_country[finalValue].total_cases.replace(/,/g,"");
+                  let active = data.stat_by_country[finalValue].active_cases.replace(/,/g,"");
+                  let recovered = data.stat_by_country[finalValue].total_recovered.replace(/,/g,"");
+                  let death = data.stat_by_country[finalValue].total_deaths.replace(/,/g,"");
+                  totalCases.push(parseInt(total));
+                  activeCases.push(parseInt(active));
+                  recoveredCases.push(parseInt(recovered)); 
+                  deathCases.push(parseInt(death));
                   allCases.push(totalCases);
                   allCases.push(activeCases);
                   allCases.push(recoveredCases);
