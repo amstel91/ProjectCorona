@@ -5,7 +5,6 @@ import Api from '../../api/Api'
 import { connect } from 'react-redux';
 import {useSelector} from 'react-redux';
 import LocationComponent from '../../components/location/LocationComponent'
-import API from '../../api/Api';
 import AppUtils from '../../utils/AppUtils'
 class DashboardPage extends Component {
    state ={
@@ -68,7 +67,7 @@ componentWillReceiveProps(nextProp)
 }
 
 populateExactData = (conutry) => {
-   API.getHistoryByCountry(conutry)
+   Api.getHistoryByCountry(conutry)
    .then((res) => {
       // for(let i = 0;i < res[0].length;i++){
       //    console.log(res[0][i]);
@@ -192,7 +191,7 @@ export default connect(mapStateToProps)(DashboardPage)
 
 const styles = StyleSheet.create({
    dashLabel: {
-     color: '#00AA55',
+     color: 'gray',
      textAlign: 'right'
    },
    dashCountryText:{
@@ -206,7 +205,7 @@ const styles = StyleSheet.create({
       zIndex: 2
    },
    dashLabelText:{
-      color: '#00AA55',
+      color: 'gray',
       fontWeight:"bold",
       fontSize:10,
       textAlign: 'right'

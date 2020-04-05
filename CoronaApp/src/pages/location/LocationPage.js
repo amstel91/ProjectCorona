@@ -12,7 +12,13 @@ import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faSearch, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import {default as countries} from '../../data/countries.json';
+import { connect } from 'react-redux';
 import API from '../../api/Api';
+import { StackActions } from '@react-navigation/native';
+import * as RootNavigation from '../../navigation/RootNavigation.js';
+import { bindActionCreators } from 'redux';
+import { changeCountry } from '../../actions/countryAction';
+
 class LocationSelectorComponent extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +41,10 @@ class LocationSelectorComponent extends Component {
   };
 
   getItem(item) {
-    Alert.alert(item);
+    this.props.changeCountry(item);
+    const popAction = StackActions.pop(1);
+    RootNavigation.dispatch(popAction);
+    //Alert.alert(item);
   }
 
   onChangeText(text) {
@@ -115,4 +124,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LocationSelectorComponent;
+const mapStateToProps = state => ({
+    country: state.country,
+});
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({changeCountry}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationSelectorComponent);
