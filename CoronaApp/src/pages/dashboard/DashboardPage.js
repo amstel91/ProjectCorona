@@ -173,10 +173,10 @@ static getDerivedStatFromProps(nextPros, prevState)
                   </View>
                </View>
                <View>
-                  <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="red"/>
-                  <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" color="blue"/>
-                  <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="green"/>
-                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DECEASED" color="black"/>
+                  <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="#F44335"/>
+                  <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" color="#2096F3"/>
+                  <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="#4DB052"/>
+                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DECEASED" color="#616161"/>
                </View>
             </>
         )

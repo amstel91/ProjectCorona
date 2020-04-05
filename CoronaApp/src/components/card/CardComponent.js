@@ -33,6 +33,9 @@ class CardComponent extends Component {
     render(){
 
         let varStyle = this.props.color;
+        let textColor={
+          color:this.props.color
+        }
         //console.log(styles[varStyle]);
         return (
             <View>
@@ -40,8 +43,8 @@ class CardComponent extends Component {
                   <View style={{flexDirection:"row",justifyContent:'space-between'}}>
                     <Chart lineData={this.props.lineData} color={this.props.color}/>
                     <View style={{flexDirection:"column",alignSelf: 'flex-end',justifyContent:'space-between',paddingRight:20}}>
-                      <Text style={[styles.countText,styles[varStyle]]}>{this.state.count}</Text>
-                      <Text style={[styles.headerText,styles[varStyle]]}>{this.state.header}</Text>
+                      <Text style={[styles.countText,textColor]}>{this.state.count}</Text>
+                      <Text style={[styles.headerText,textColor]}>{this.state.header}</Text>
                     </View>
                   </View>
               </View>
