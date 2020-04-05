@@ -140,8 +140,12 @@ static getDerivedStatFromProps(nextPros, prevState)
 
    translateToLocalDate(date){
       if(date && date.trim()!=""){
-         let tDate=new Date(date+" GMT");
-         //console.log(tDate.toLocaleString())
+         let splitDate=date.split(".");
+         let dateString=splitDate[0]+" GMT";
+         dateString=dateString.replace(/-/g, '/');
+         let tDate=new Date(dateString);
+         console.log("Date returned by API:",dateString)
+         console.log("Date returned by API in Local Timezone:",tDate.toLocaleString())
          return AppUtils.getTimeSince(tDate);
       }
       return "";
