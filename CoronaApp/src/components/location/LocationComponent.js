@@ -24,6 +24,14 @@ class LocationComponent extends Component {
         this.getData()
     }
 
+    componentWillReceiveProps(props) {
+        if (props.country.countryName !== this.state.AutoCountryName) {
+            this.setState({
+                AutoCountryName:props.country.countryName
+            })
+        }
+      }
+
     showChangeLocation(){
         
         RootNavigation.navigate('Location', {});
