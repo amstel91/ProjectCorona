@@ -1,4 +1,4 @@
-package com.coronaapp;
+package com.nostrovia.gocorona;
 
 import android.app.Application;
 import android.content.Context;
