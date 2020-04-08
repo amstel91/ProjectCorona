@@ -10,7 +10,7 @@ class OSSComponent extends Component{
             <View style={styles.MainContainer}>
  
             <Text style={styles.TextStyle} onPress={ ()=> Linking.openURL('https://rapidapi.com/astsiatsko/api/coronavirus-monitor?endpoint=apiendpoint_1f6e9f84-d051-4d4d-9106-8bbeb3f162c4') } >API's used for Data Source.</Text>
-            <Text style={styles.TextStyle} onPress={ ()=> Linking.openURL('https://github.com/facebook/react-native/blob/master/LICENSE') } >React-Native License used for App evelopment .</Text>
+            {/* <Text style={styles.TextStyle} onPress={ ()=> Linking.openURL('https://github.com/facebook/react-native/blob/master/LICENSE') } >React-Native License used for App development .</Text> */}
             </View>
         )
     }

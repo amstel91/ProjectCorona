@@ -217,7 +217,7 @@ _onRefresh() {
                   <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="#F44335"/>
                   <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" color="#2096F3"/>
                   <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="#4DB052"/>
-                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DECEASED" color="#616161"/>
+                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DEATHS" color="#616161"/>
                </View>
                </ScrollView>
             </>
