@@ -28,7 +28,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGlobe, faFileAlt, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { navigationRef } from './navigation/RootNavigation';
 import * as RootNavigation from './navigation/RootNavigation';
-import OSSComponent from './pages/DataSource/SourceOfData'
+import OSSComponent from './pages/DataSource/SourceOfData';
+
 
 import {
   Header,
@@ -40,10 +41,7 @@ import {
 import { Directions } from 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 const App: () => React$Node = () => {
-  let loadData = () =>{
-    
-  }
-  loadData();
+
   let gotoWorlInfoPage=()=>{
         console.log("goWorld");
         RootNavigation.navigate('WorldInfo', {});
@@ -52,6 +50,7 @@ const App: () => React$Node = () => {
     console.log("OSSAndDataSource");
     RootNavigation.navigate('OSSAndDataSource', {});
   }
+
   return (
     <NavigationContainer ref={navigationRef}>
       <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#1081db" translucent = {true} />
