@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     dataDiv:{
         height: 100,
         justifyContent: 'center',
-        borderColor: '#000',
+        borderColor: '#e7e7e7',
         borderWidth: 0.5,
         // borderRadius: 10
     },
