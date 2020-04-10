@@ -20,8 +20,11 @@ class LocationNavigator{
                             rejectionFunc(error.message);
                             });
                 },
-                (error) => console.log(error.message),
-                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+                (error) => {
+                    console.log(error.message);
+                    rejectionFunc(error.message);
+                },
+                { enableHighAccuracy: false, timeout: 8000, maximumAge: 1000 },
               );
         });
         

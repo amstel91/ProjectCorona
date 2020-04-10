@@ -29,6 +29,13 @@ class LocationSelectorComponent extends Component {
     this.state = {
       countryList: countries,
     };
+    this.backNotAllowed=false;
+    let navState=this.props.navigation.dangerouslyGetState();
+    if(navState.routes && navState.routes.length>0){
+      let currentNavState=navState.routes.find(x => x.name=="Location");
+      this.backNotAllowed=currentNavState.params && currentNavState.params.backNotAllowed;
+    }
+    console.log("backNotAllowed",this.props.navigation.dangerouslyGetState())
   }
 
   componentDidMount(){
@@ -48,8 +55,13 @@ class LocationSelectorComponent extends Component {
 
   getItem(item) {
     this.props.changeCountry(item);
-    const popAction = StackActions.pop(1);
-    RootNavigation.dispatch(popAction);
+    if(this.backNotAllowed){
+      RootNavigation.replace("Dashboard",{});
+    }else{
+      const popAction = StackActions.pop(1);
+      RootNavigation.dispatch(popAction);
+    }
+    
     //Alert.alert(item);
   }
 

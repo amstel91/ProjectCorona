@@ -10,43 +10,50 @@ import AppUtils from '../../utils/AppUtils'
 //const [refreshing, setRefreshing] = React.useState(false);
 
 class DashboardPage extends Component {
-   state ={
-      refreshing: false,
-      dashCountry:'',
-      metadata: {total_cases:0, active_cases:0, total_recovered:0, total_deaths:0, record_date:''},
-      line1 : {
-         datasets: [
-           {
-             data: null,
-             strokeWidth: 3, // optional
-           },
-         ],
-       },
-       line2 : {
-         datasets: [
-           {
-             data: null,
-             strokeWidth: 3, // optional
-           },
-         ],
-       },
-       line3 : {
-         datasets: [
-           {
-             data: null,
-             strokeWidth: 3, // optional
-           },
-         ],
-       },
-       line4 : {
-         datasets: [
-           {
-             data: null,
-             strokeWidth: 3, // optional
-           },
-         ],
-       }
+   constructor(props){
+      super(props);
+      this.state ={
+         refreshing: false,
+         dashCountry:props.country.countryName,
+         metadata: {total_cases:0, active_cases:0, total_recovered:0, total_deaths:0, record_date:''},
+         line1 : {
+            datasets: [
+              {
+                data: null,
+                strokeWidth: 3, // optional
+              },
+            ],
+          },
+          line2 : {
+            datasets: [
+              {
+                data: null,
+                strokeWidth: 3, // optional
+              },
+            ],
+          },
+          line3 : {
+            datasets: [
+              {
+                data: null,
+                strokeWidth: 3, // optional
+              },
+            ],
+          },
+          line4 : {
+            datasets: [
+              {
+                data: null,
+                strokeWidth: 3, // optional
+              },
+            ],
+          }
+      }
+      if(props.country.countryName!=''){
+         this.updateCountryStats(props.country.countryName);
+      }
    }
+
 
 updateCountryStats(countryName){
    if(countryName == "Current Location")
