@@ -49,6 +49,10 @@ class DashboardPage extends Component {
    }
 
 updateCountryStats(countryName){
+   if(countryName == "Current Location")
+   {
+      return;
+   }
    return new Promise( (resolutionFunc,rejectionFunc) => {
    metadata:Api.getCountryStats(countryName)
    .then((res) => {

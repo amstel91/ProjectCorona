@@ -22,7 +22,10 @@ import { changeCountry } from '../../actions/countryAction';
 class LocationSelectorComponent extends Component {
   constructor(props) {
     super(props);
+    var curLoc = "Current Location";
     this.allCountries = countries;
+    //countries = [curLoc].concat(countries);
+    //this.allCountries = countries;
     this.state = {
       countryList: countries,
     };
@@ -30,7 +33,10 @@ class LocationSelectorComponent extends Component {
 
   componentDidMount(){
     API.getAffectedCountries().then(data=>{
-        this.allCountries=data.affected_countries
+      var curLoc = "Current Location";
+      //data.affected_countries = [curLoc].concat();
+        //this.allCountries=data.affected_countries
+        this.allCountries = [curLoc].concat(data.affected_countries);
     })
   }
 

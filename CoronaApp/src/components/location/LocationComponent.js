@@ -26,6 +26,10 @@ class LocationComponent extends Component {
 
     componentWillReceiveProps(props) {
         if (props.country.countryName !== this.state.AutoCountryName) {
+            if(props.country.countryName == "Current Location")
+            {
+                this.getData();
+            }
             this.setState({
                 AutoCountryName:props.country.countryName
             })
