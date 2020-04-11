@@ -14,6 +14,7 @@ class CardComponent extends Component {
             color: 'red'*/
             count: props.count,
             header: props.header,
+            perc: props.perc,
             color: props.color
         }
     }
@@ -45,6 +46,7 @@ class CardComponent extends Component {
                     <View style={{flexDirection:"column",alignSelf: 'flex-end',justifyContent:'space-between',paddingRight:20}}>
                       <Text style={[styles.countText,textColor]}>{this.state.count}</Text>
                       <Text style={[styles.headerText,textColor]}>{this.state.header}</Text>
+                      <Text style={[styles.headerText,textColor]}>{this.state.perc}%</Text>
                     </View>
                   </View>
               </View>
@@ -56,13 +58,13 @@ export default CardComponent;
 
 const styles = StyleSheet.create({
     countText:{
-        fontSize: 35,
+        fontSize: 25,
         fontWeight: 'bold',
         textAlign:'right',
         // alignSelf: 'flex-end'
     },
     headerText:{
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: '900',
         textAlign:'right',
         // alignSelf: 'flex-end'

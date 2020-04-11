@@ -15,7 +15,7 @@ class DashboardPage extends Component {
       this.state ={
          refreshing: false,
          dashCountry:props.country.countryName,
-         metadata: {total_cases:0, active_cases:0, total_recovered:0, total_deaths:0, record_date:''},
+         metadata: {total_cases:0, active_cases:0, total_recovered:0, total_deaths:0, perc_total:0, perc_active:0, perc_recovered:0, perc_deaths:0, record_date:''},
          line1 : {
             datasets: [
               {
@@ -70,13 +70,46 @@ updateCountryStats(countryName){
          });
          this.populateExactData(countryName);
          //console.log(this.state.metadata.total_cases);
+         var population = 0;
+         Api.getCountryDetails(countryName).then((res2) =>{
+            for(var i = 0; i < res2.length; i++)
+            {
+               if((res2[i].name === countryName) || (res2[i].alpha2Code === countryName) || (res2[i].alpha3Code === countryName))
+               {
+                  population = res2[i].population;
+                  var tc = res.latest_stat_by_country[0].total_cases.replace(/,/g,"");
+                  //this.state.metadata.perc_total = (tc / population * 100).toFixed(2);
+                  this.setState((prevState, props) => ({
+                     metadata:{
+                        ...prevState.metadata,
+                        perc_total:(tc / population * 100).toFixed(2)
+                     }
+                  }));
+               }
+            }
+         })
+         var tc = this.state.metadata.total_cases.replace(/,/g,"");
+         var ac = this.state.metadata.active_cases.replace(/,/g,"");
+         var tr = this.state.metadata.total_recovered.replace(/,/g,"");
+         var td = this.state.metadata.total_deaths.replace(/,/g,"");
+         //this.state.metadata.perc_total = (tc / population * 100).toFixed(2);
+         //this.state.metadata.perc_active = (ac / tc * 100).toFixed(2);
+         //this.state.metadata.perc_recovered = (tr / tc * 100).toFixed(2);
+         //this.state.metadata.perc_deaths = (td / tc * 100).toFixed(2);
+         this.setState((prevState, props) => ({
+            metadata:{
+               ...prevState.metadata,
+               perc_active:(ac / tc * 100).toFixed(2),
+               perc_recovered:(tr / tc * 100).toFixed(2),
+               perc_deaths:(td / tc * 100).toFixed(2)
+            }
+         }));
          resolutionFunc();
       }
    })
    .catch(function(error) {
         console.log(error.message);
    });
-   
 }
    )
 }
@@ -225,10 +258,10 @@ _onRefresh() {
                   </View>
                </View>
                <View>
-                  <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" color="#F44335"/>
-                  <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" color="#2096F3"/>
-                  <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" color="#4DB052"/>
-                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DEATHS" color="#616161"/>
+                  <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" perc={this.state.metadata.perc_total} color="#F44335"/>
+                  <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" perc={this.state.metadata.perc_active} color="#2096F3"/>
+                  <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" perc={this.state.metadata.perc_recovered} color="#4DB052"/>
+                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DEATHS" perc={this.state.metadata.perc_deaths} color="#616161"/>
                </View>
                </ScrollView>
             </>

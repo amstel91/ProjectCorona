@@ -53,6 +53,19 @@ class API{
             .then((res) => res.json());
     }
 
+    static getCountryDetails = (countryName) => {
+        API.keyGenerator();
+        const URL = "https://restcountries-v1.p.rapidapi.com/name/" + countryName;
+        return fetch(URL, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
+                "x-rapidapi-key": API.GENERATED_KEY
+            }
+        })
+            .then((res) => res.json());
+    }
+
     static getCountry = (latitude,longitude) => {
         //console.log("longitude is" + longitude);
         //console.log("latitude is" + latitude);
