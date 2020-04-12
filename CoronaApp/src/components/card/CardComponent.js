@@ -22,11 +22,12 @@ class CardComponent extends Component {
     componentWillReceiveProps(props) {
         //console.log(this.props.count);
         //const { refresh, id } = this.props;
-        if (props.count !== this.state.count) {
+        if ((props.count !== this.state.count) || (props.perc !== this.state.perc)) {
           //this.fetchShoes(id)
             //.then(this.refreshShoeList)
             this.setState({
-                count:props.count
+                count:props.count,
+                perc: props.perc
             })
         }
       }

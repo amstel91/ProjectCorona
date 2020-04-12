@@ -106,12 +106,16 @@ updateCountryStats(countryName){
                   population = res2[i].population;
                   var tc = res.latest_stat_by_country[0].total_cases.replace(/,/g,"");
                   //this.state.metadata.perc_total = (tc / population * 100).toFixed(2);
-                  self.setState((prevState, props) => ({
+                  /*self.setState((prevState, props) => ({
                      metadata:{
                         ...prevState.metadata,
                         perc_total:(tc / population * 100).toFixed(2)
                      }
-                  }));
+                  }));*/
+                  tmp.perc_total = (tc / population * 100).toFixed(2);
+                  self.setState({
+                     metadata:tmp
+                  });
                }
             }
          })
