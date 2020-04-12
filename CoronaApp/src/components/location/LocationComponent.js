@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { changeCountry } from '../../actions/countryAction';
 import { bindActionCreators } from 'redux';
 import * as RootNavigation from '../../navigation/RootNavigation.js';
+import AppUtils from '../../utils/AppUtils'
 
 
 class LocationComponent extends Component {
@@ -66,6 +67,8 @@ class LocationComponent extends Component {
       }
 
     componentDidMount = () =>{
+        console.log("Logging Storage")
+        AppUtils.logCurrentStorage();
         if(this.props.country==undefined || this.props.country.countryName == undefined || this.props.country.countryName==''){
             this.loadChecks();
         }
