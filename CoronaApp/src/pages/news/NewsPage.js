@@ -1,5 +1,6 @@
 import { StyleSheet,ScrollView,Linking,RefreshControl } from 'react-native';
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
+import { Card, CardTitle, CardContent, CardAction, CardButton } from 'react-native-cards';
+import CardImage from '../../components/card/reactNativeCardExt/CardImage'
 import React, { Component } from 'react';
 import Api from '../../api/Api'
 import AppUtils from '../../utils/AppUtils'
@@ -40,9 +41,9 @@ class NewsPage extends Component{
     }
 
     share(article){
-        shareOptions.url=article.url;
-        shareOptions.message=article.title
-        Share.open(options)
+        this.shareOptions.url=article.url;
+        this.shareOptions.message=article.title
+        Share.open(this.shareOptions)
         .then((res) => { 
            let msg= { text: 'Shared successfully', styles: ToastStyles.success };
            this.setState({ message:msg });
@@ -51,15 +52,23 @@ class NewsPage extends Component{
     }
 
     refreshNews(){
-        Api.getNews("us").then(res=>{
-            console.log(res);
-            this.setState(
-                {
-                    articles:res.articles,
-                    totalResults:res.totalResults,
-                    refreshing: false
-                }
-            )
+        Api.getNews().then(res=>{
+            console.log("Amstel",res);
+            if(res.articles){
+                this.setState(
+                    {
+                        articles:res.articles,
+                        totalResults:res.totalResults,
+                        refreshing: false
+                    }
+                )
+            }else{
+                let msg= { text: 'Could not load data. Please try again', styles: ToastStyles.error };
+                this.setState({ message:msg });
+            }
+        }).catch((err)=>{
+                let msg= { text: 'Could not load data. Please try again', styles: ToastStyles.error };
+                this.setState({ message:msg });
         })
     }
 
@@ -73,29 +82,29 @@ class NewsPage extends Component{
 
     generateCards(){
         let self=this;
-        let cards=this.state.articles.map(function (card) {
+        let cards=this.state.articles.map(function (card,index) {
             return (
-                <Card>
+                <Card key={index}>
                     <CardImage 
                     source={{uri: card.urlToImage}} 
                     title={card.title}
                     />
-                    <CardTitle
+                    <CardTitle style={styles.cardTitle}
                     subtitle={self.translateToLocalDate(card.publishedAt)}
                     />
                     <CardContent text={card.description} />
                     <CardAction 
                     separator={true} 
                     inColumn={false}>
-                    <CardButton
-                        onPress={() => {}}
+                    <CardButton style={styles.button}
+                        onPress={() => {self.share(card)}}
                         title="Share"
-                        color="#FEB557"
+                        color="#00000"
                     />
-                    <CardButton
-                        onPress={self.loadInBrowser(card.url)}
+                    <CardButton style={styles.button}
+                        onPress={() => {self.loadInBrowser(card.url)}}
                         title="Explore"
-                        color="#FEB557"
+                        color="#00000"
                     />
                     </CardAction>
                 </Card>
@@ -122,7 +131,12 @@ class NewsPage extends Component{
 }
 
 const styles = StyleSheet.create({
- 
+    cardTitle:{
+        marginTop:-10
+    },
+    cardButton:{
+        fontWeight:"bold"
+    }
 });
 
 export default NewsPage;
