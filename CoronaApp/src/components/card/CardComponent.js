@@ -47,7 +47,7 @@ class CardComponent extends Component {
                     <View style={{flexDirection:"column",alignSelf: 'flex-end',justifyContent:'space-between',paddingRight:20}}>
                       <Text style={[styles.countText,textColor]}>{this.state.count}</Text>
                       <Text style={[styles.headerText,textColor]}>{this.state.header}</Text>
-                      <Text style={[styles.headerText,textColor]}>{this.state.perc}%</Text>
+                      <Text style={[styles.percText,textColor]}>{this.state.perc}</Text>
                     </View>
                   </View>
               </View>
@@ -65,7 +65,13 @@ const styles = StyleSheet.create({
         // alignSelf: 'flex-end'
     },
     headerText:{
-        fontSize: 15,
+      fontSize: 15,
+      fontWeight: '900',
+      textAlign:'right',
+      // alignSelf: 'flex-end'
+    },
+    percText:{
+        fontSize: 12,
         fontWeight: '900',
         textAlign:'right',
         // alignSelf: 'flex-end'

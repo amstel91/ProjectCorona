@@ -274,10 +274,10 @@ _onRefresh() {
                   </View>
                </View>
                <View>
-                  <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" perc={this.state.metadata.perc_total} color="#F44335"/>
-                  <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" perc={this.state.metadata.perc_active} color="#2096F3"/>
-                  <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" perc={this.state.metadata.perc_recovered} color="#4DB052"/>
-                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DEATHS" perc={this.state.metadata.perc_deaths} color="#616161"/>
+                  <CardComponent lineData={this.state.line1} count={this.state.metadata.total_cases} header="CONFIRMED" perc={this.state.metadata.perc_total + "% of population"} color="#F44335"/>
+                  <CardComponent lineData={this.state.line2} count={this.state.metadata.active_cases} header="ACTIVE" perc={this.state.metadata.perc_active + "% of confirmed"} color="#2096F3"/>
+                  <CardComponent lineData={this.state.line3} count={this.state.metadata.total_recovered} header="RECOVERED" perc={this.state.metadata.perc_recovered + "% of confirmed"} color="#4DB052"/>
+                  <CardComponent lineData={this.state.line4} count={this.state.metadata.total_deaths} header="DEATHS" perc={this.state.metadata.perc_deaths + "% of confirmed"} color="#616161"/>
                </View>
                </ScrollView>
             </>
