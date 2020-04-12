@@ -1,4 +1,4 @@
-import { StyleSheet,ScrollView,Linking,RefreshControl,RefreshControl } from 'react-native';
+import { StyleSheet,ScrollView,Linking,RefreshControl } from 'react-native';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
 import React, { Component } from 'react';
 import Api from '../../api/Api'
