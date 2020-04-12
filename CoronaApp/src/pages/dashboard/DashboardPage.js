@@ -56,6 +56,7 @@ class DashboardPage extends Component {
 
 
 updateCountryStats(countryName){
+   let self = this;
    if(countryName == "Current Location")
    {
       return;
@@ -65,10 +66,36 @@ updateCountryStats(countryName){
    .then((res) => {
       {
          //console.log(res);
-         this.setState({
-            metadata:res.latest_stat_by_country[0]
+         //self.setState({
+         //   metadata:res.latest_stat_by_country[0]
+         //});
+         let tmp = res.latest_stat_by_country[0];
+         self.populateExactData(countryName);
+         var tc = tmp.total_cases.replace(/,/g,"");
+         var ac = tmp.active_cases.replace(/,/g,"");
+         var tr = tmp.total_recovered.replace(/,/g,"");
+         var td = tmp.total_deaths.replace(/,/g,"");
+         //this.state.metadata.perc_total = (tc / population * 100).toFixed(2);
+         //this.state.metadata.perc_active = (ac / tc * 100).toFixed(2);
+         //this.state.metadata.perc_recovered = (tr / tc * 100).toFixed(2);
+         //this.state.metadata.perc_deaths = (td / tc * 100).toFixed(2);
+         /*this.setState((prevState, props) => ({
+            metadata:{
+               ...prevState.metadata,
+               perc_active:(ac / tc * 100).toFixed(2),
+               perc_recovered:(tr / tc * 100).toFixed(2),
+               perc_deaths:(td / tc * 100).toFixed(2)
+            }
+         }));*/
+         
+         tmp.perc_active = (ac / tc * 100).toFixed(2);
+         tmp.perc_recovered = (tr / tc * 100).toFixed(2);
+         tmp.perc_deaths = (td / tc * 100).toFixed(2);
+         tmp.perc_total = 0;
+         console.log(tmp);
+         self.setState({
+            metadata:tmp
          });
-         this.populateExactData(countryName);
          //console.log(this.state.metadata.total_cases);
          var population = 0;
          Api.getCountryDetails(countryName).then((res2) =>{
@@ -79,7 +106,7 @@ updateCountryStats(countryName){
                   population = res2[i].population;
                   var tc = res.latest_stat_by_country[0].total_cases.replace(/,/g,"");
                   //this.state.metadata.perc_total = (tc / population * 100).toFixed(2);
-                  this.setState((prevState, props) => ({
+                  self.setState((prevState, props) => ({
                      metadata:{
                         ...prevState.metadata,
                         perc_total:(tc / population * 100).toFixed(2)
@@ -88,22 +115,7 @@ updateCountryStats(countryName){
                }
             }
          })
-         var tc = this.state.metadata.total_cases.replace(/,/g,"");
-         var ac = this.state.metadata.active_cases.replace(/,/g,"");
-         var tr = this.state.metadata.total_recovered.replace(/,/g,"");
-         var td = this.state.metadata.total_deaths.replace(/,/g,"");
-         //this.state.metadata.perc_total = (tc / population * 100).toFixed(2);
-         //this.state.metadata.perc_active = (ac / tc * 100).toFixed(2);
-         //this.state.metadata.perc_recovered = (tr / tc * 100).toFixed(2);
-         //this.state.metadata.perc_deaths = (td / tc * 100).toFixed(2);
-         this.setState((prevState, props) => ({
-            metadata:{
-               ...prevState.metadata,
-               perc_active:(ac / tc * 100).toFixed(2),
-               perc_recovered:(tr / tc * 100).toFixed(2),
-               perc_deaths:(td / tc * 100).toFixed(2)
-            }
-         }));
+         
          resolutionFunc();
       }
    })
