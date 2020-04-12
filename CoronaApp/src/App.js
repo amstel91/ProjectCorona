@@ -22,6 +22,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import LocationComponent from './components/location/LocationComponent';
 import LocationSelectorComponent from './pages/location/LocationPage';
+import NewsPage from './pages/news/NewsPage';
 import WorldInfoComponent from './pages/WorldInfo/WorldInfoPage'
 import {createStackNavigator} from '@react-navigation/stack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -49,7 +50,7 @@ const App: () => React$Node = () => {
   }
   let gotoOSSPage=()=>{
     console.log("OSSAndDataSource");
-    RootNavigation.navigate('OSSAndDataSource', {});
+    RootNavigation.navigate('NewsPage', {});
   }
 
   return (
@@ -101,6 +102,16 @@ const App: () => React$Node = () => {
         }} />
         <Stack.Screen name="OSSAndDataSource" component={OSSComponent} options={{
           title: "OSS and Data Source",
+          headerStyle: {
+            backgroundColor: '#2196f3',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+        }} />
+        <Stack.Screen name="NewsPage" component={NewsPage} options={{
+          title: "News",
           headerStyle: {
             backgroundColor: '#2196f3',
           },
