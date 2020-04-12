@@ -1,16 +1,26 @@
-import { View, Text ,StyleSheet,ScrollView } from 'react-native';
+import { StyleSheet,ScrollView,Linking,RefreshControl,RefreshControl } from 'react-native';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
 import React, { Component } from 'react';
 import Api from '../../api/Api'
 import AppUtils from '../../utils/AppUtils'
+import Share from 'react-native-share';
+import Toaster, { ToastStyles } from 'react-native-toaster'
 
 class NewsPage extends Component{
+
+    shareOptions = {
+        title: 'Share via',
+        message: '',
+        url: ''
+    };
 
     constructor(props){
         super(props)
         this.state={
             articles:[],
-            totalResults:0
+            totalResults:0,
+            refreshing:false,
+            message:null
         }
     }
 
@@ -24,17 +34,42 @@ class NewsPage extends Component{
         return "";
      }
 
-    componentDidMount(){
+    onRefresh() {
+        this.setState({refreshing: true});
+        this.refreshNews();
+    }
+
+    share(article){
+        shareOptions.url=article.url;
+        shareOptions.message=article.title
+        Share.open(options)
+        .then((res) => { 
+           let msg= { text: 'Shared successfully', styles: ToastStyles.success };
+           this.setState({ message:msg });
+         })
+        .catch((err) => { err && console.log(err); });
+    }
+
+    refreshNews(){
         Api.getNews("us").then(res=>{
             console.log(res);
             this.setState(
                 {
                     articles:res.articles,
-                    totalResults:res.totalResults
+                    totalResults:res.totalResults,
+                    refreshing: false
                 }
             )
         })
     }
+
+    componentDidMount(){
+        this.refreshNews();
+    }
+
+    loadInBrowser = (url) => {
+        Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+    };
 
     generateCards(){
         let self=this;
@@ -58,7 +93,7 @@ class NewsPage extends Component{
                         color="#FEB557"
                     />
                     <CardButton
-                        onPress={() => {}}
+                        onPress={self.loadInBrowser(card.url)}
                         title="Explore"
                         color="#FEB557"
                     />
@@ -66,13 +101,22 @@ class NewsPage extends Component{
                 </Card>
             );
          });
-        return <ScrollView>{cards}</ScrollView>
+        return (<ScrollView refreshControl={
+                    <RefreshControl refreshing={this.state.refreshing}
+                    onRefresh={this.onRefresh.bind(this)} />
+                    }
+                >
+                    {cards}
+                </ScrollView>)
     }
 
     render(){
         
         return(
-            this.generateCards()
+            <>
+                <Toaster message={this.state.message} />
+                {this.generateCards()}
+            </>
         )
     }
 }
