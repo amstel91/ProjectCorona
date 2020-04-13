@@ -1,9 +1,10 @@
-import { View, Text,StyleSheet,TextInput } from 'react-native';
+import { View, Text,StyleSheet, ScrollView } from 'react-native';
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import API from '../../api/Api';
 import AppUtils from '../../utils/AppUtils'
+import TableComp from '../../components/chart/statTable'
 
 class WorldInfoComponent extends Component{
     constructor(props){
@@ -12,7 +13,8 @@ class WorldInfoComponent extends Component{
 
     state={
         data:'',
-        active:0
+        active:0,
+        statdata:''
     }
     
 
@@ -53,10 +55,25 @@ class WorldInfoComponent extends Component{
               console.log("What");
               alert(error.message);
               });
+
+        API.getTableData()
+        .then((res) => {
+            {
+              console.log(res);
+              this.setState({
+                statdata: res
+              });
+            }
+          })
+          .catch(function(error) {
+              console.log("What");
+              alert(error.message);
+              });
     }
 
     render(){
         return(
+            <ScrollView>
             <View style={{flexDirection:"column",flex:1}}>
                 <View style={{backgroundColor: '#f9f9f9',paddingVertical:5,paddingHorizontal:10}}>
                      <Text style={styles.dashCountryText}>Statistics for World</Text>
@@ -87,7 +104,9 @@ class WorldInfoComponent extends Component{
                     </View>
                 </View>
                 </View>
+                <TableComp data={this.state.statdata}/>
             </View>
+            </ScrollView>
         )
     }
 }

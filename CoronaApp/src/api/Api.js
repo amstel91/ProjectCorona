@@ -14,6 +14,20 @@ class API{
         this.GENERATED_KEY = apikeyArr[idx];
     }
 
+    static getTableData = () =>{
+        const URL = API.BASE_URL + "/cases_by_country.php";
+        API.keyGenerator();
+        //console.log(URL);
+        return fetch(URL, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+                "x-rapidapi-key": API.GENERATED_KEY
+            }
+        })
+            .then((res) => res.json());
+    }
+
     static getWorldStats = () => {
         const URL = API.BASE_URL + "/worldstat.php";
         API.keyGenerator();
