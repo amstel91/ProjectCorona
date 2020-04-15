@@ -25,7 +25,7 @@ https://rapidapi.com/astsiatsko/api/coronavirus-monitor?endpoint=apiendpoint_1f6
 ### Run below command to generate apks
 
 ```
-bundletool build-apks --bundle app/build/outputs/bundle/release/app.aab --output=~/Desktop/app.apks --ks=app/android.keystore  --ks-key-alias=gocorona --ks-pass=pass:gocorona
+bundletool build-apks --bundle app/build/outputs/bundle/release/app.aab --output=~/Desktop/app.apks --ks=app/android.keystore  --ks-key-alias=CovidMonitor --ks-pass=pass:CovidMonitor
 ```
 
 

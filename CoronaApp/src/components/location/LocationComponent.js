@@ -120,7 +120,7 @@ class LocationComponent extends Component {
             //API.getWorldStats().then(res){this.state.country=res}
             <View>
               <Text style={styles.titleText}>
-                 GoCorona
+                 CovidMonitor
               </Text>
               <Text style={styles.locationText} onPress={this.showChangeLocation.bind(this)}>
                 <FontAwesomeIcon icon={ faMapMarkerAlt } size={ 10 } color={ 'white' } /> {this.state.AutoCountryName} {" "}

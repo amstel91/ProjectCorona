@@ -1,4 +1,4 @@
-package com.nostrovia.gocorona;
+package com.monitor.CovidMonitor;
 
 import com.facebook.react.ReactActivity;
 

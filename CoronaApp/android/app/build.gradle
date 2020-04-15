@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.nostrovia.gocorona"
+        applicationId "com.monitor.CovidMonitor"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

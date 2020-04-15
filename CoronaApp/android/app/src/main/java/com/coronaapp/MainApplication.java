@@ -1,4 +1,4 @@
-package com.nostrovia.gocorona;
+package com.monitor.CovidMonitor;
 
 import android.app.Application;
 import android.content.Context;
