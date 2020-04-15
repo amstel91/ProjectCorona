@@ -53,7 +53,6 @@ class NewsPage extends Component{
 
     refreshNews(){
         Api.getNews().then(res=>{
-            console.log("Amstel",res);
             if(res.articles){
                 this.setState(
                     {

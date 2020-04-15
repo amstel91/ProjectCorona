@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'CoronaApp' do
-  # Pods for CoronaApp
+target 'CovidMonitor' do
+  # Pods for CovidMonitor
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -36,7 +36,7 @@ target 'CoronaApp' do
 
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
 
-  target 'CoronaAppTests' do
+  target 'CovidMonitorTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -44,10 +44,10 @@ target 'CoronaApp' do
   use_native_modules!
 end
 
-target 'CoronaApp-tvOS' do
-  # Pods for CoronaApp-tvOS
+target 'CovidMonitor-tvOS' do
+  # Pods for CovidMonitor-tvOS
 
-  target 'CoronaApp-tvOSTests' do
+  target 'CovidMonitor-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
