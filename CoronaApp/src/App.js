@@ -26,7 +26,7 @@ import NewsPage from './pages/news/NewsPage';
 import WorldInfoComponent from './pages/WorldInfo/WorldInfoPage'
 import {createStackNavigator} from '@react-navigation/stack';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faGlobe, faFileAlt, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faNewspaper, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { navigationRef } from './navigation/RootNavigation';
 import * as RootNavigation from './navigation/RootNavigation';
 import OSSComponent from './pages/DataSource/SourceOfData';
@@ -50,6 +50,10 @@ const App: () => React$Node = () => {
   }
   let gotoOSSPage=()=>{
     console.log("OSSAndDataSource");
+    RootNavigation.navigate('OSSAndDataSource', {});
+  }
+  let gotoNewsPage=()=>{
+    console.log("NewsPage");
     RootNavigation.navigate('NewsPage', {});
   }
 
@@ -72,7 +76,11 @@ const App: () => React$Node = () => {
                 <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' }/>
                 <Text style={styles.iconText}>World</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:20,marginRight:10}} onPress={gotoOSSPage}>
+              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:10}} onPress={gotoNewsPage}>
+                <FontAwesomeIcon icon={ faNewspaper } size={ 24 } color={ 'white' } />
+                <Text style={styles.iconText}>News</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:10}} onPress={gotoOSSPage}>
                 <FontAwesomeIcon icon={ faInfoCircle } size={ 24 } color={ 'white' } />
                 <Text style={styles.iconText}>About</Text>
               </TouchableOpacity>
