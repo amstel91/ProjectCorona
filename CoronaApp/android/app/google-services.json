@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "326814623387",
-    "firebase_url": "https://CovidMonitor-a5685.firebaseio.com",
-    "project_id": "CovidMonitor-a5685",
-    "storage_bucket": "CovidMonitor-a5685.appspot.com"
+    "project_number": "229144561800",
+    "firebase_url": "https://covidmonitor-b00df.firebaseio.com",
+    "project_id": "covidmonitor-b00df",
+    "storage_bucket": "covidmonitor-b00df.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:326814623387:android:40d84269b3d4e3a9da483e",
+        "mobilesdk_app_id": "1:229144561800:android:f909eeee98631699be773d",
         "android_client_info": {
           "package_name": "com.monitor.CovidMonitor"
         }
       },
       "oauth_client": [
         {
-          "client_id": "326814623387-f6ngtmhavard4s6pp51d1naj57a2m3h9.apps.googleusercontent.com",
+          "client_id": "229144561800-a49h12or37lpdjpc1cq4645hlossqrdn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.monitor.CovidMonitor",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "326814623387-mkmvarek5s3f8n3herargh7maur7sk31.apps.googleusercontent.com",
+          "client_id": "229144561800-na5bqjspql83ro47969sp1nn01lnfn86.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB23AuWUmPSKHJJPvbQM76totqyFDopapw"
+          "current_key": "AIzaSyDydxlk8AAFnGSGL1NHTILnwO7GPjH5MyA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "326814623387-mkmvarek5s3f8n3herargh7maur7sk31.apps.googleusercontent.com",
+              "client_id": "229144561800-na5bqjspql83ro47969sp1nn01lnfn86.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
