@@ -1,4 +1,4 @@
-import { StyleSheet,ScrollView,Linking,RefreshControl } from 'react-native';
+import { StyleSheet,ScrollView,Linking,RefreshControl,Text } from 'react-native';
 import { Card, CardTitle, CardContent, CardAction, CardButton } from 'react-native-cards';
 import CardImage from '../../components/card/reactNativeCardExt/CardImage'
 import React, { Component } from 'react';
@@ -115,6 +115,7 @@ class NewsPage extends Component{
                     }
                 >
                     {cards}
+                    <Text style={{textAlign: 'center',color:'#e7e7e7'}}>Powered by NewsAPI.org</Text>
                 </ScrollView>)
     }
 

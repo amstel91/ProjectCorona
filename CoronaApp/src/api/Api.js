@@ -43,7 +43,7 @@ class API{
     }
 
     static getNews = () => {
-        let URL=API.NEWS_API_COVID+"q=corona%20AND%20covid&apiKey=2fe876657cce4d178a661a945ec240c7&sortBy=publishedAt&language=en"
+        let URL=API.NEWS_API_COVID+"q=corona%20AND%20covid&apiKey=2fe876657cce4d178a661a945ec240c7&sortBy=publishedAt&language=en&pageSize=100"
         var req = new Request(URL);
         return fetch(req)
             .then(res => res.json())
