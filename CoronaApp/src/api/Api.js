@@ -5,8 +5,8 @@ class API{
     static GOOGLEKEY = "AIzaSyDzELvXqAsZsPsLoovMulX_IO64LFj_Ll0";
     static MAPSURL = "https://maps.googleapis.com/maps/api/geocode/json";
     static SIGN_UP_KEY_SECONDARY = "e40ca55336msh0c0aceb4a149847p1f82dejsnff8fb5264622";
-    static NEWS_API = "http://newsapi.org/v2/top-headlines?";
-    static NEWS_API_COVID = "http://newsapi.org/v2/everything?";
+    static NEWS_API = "https://newsapi.org/v2/top-headlines?";
+    static NEWS_API_COVID = "https://newsapi.org/v2/everything?";
     static GENERATED_KEY = "";
     static keyGenerator = () =>{
         let idx = Math.floor(Math.random()*apikeyArr.length);
