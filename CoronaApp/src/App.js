@@ -76,11 +76,11 @@ const App: () => React$Node = () => {
                 <FontAwesomeIcon icon={ faGlobe } size={ 24 } color={ 'white' }/>
                 <Text style={styles.iconText}>World</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:10}} onPress={gotoNewsPage}>
+              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:15}} onPress={gotoNewsPage}>
                 <FontAwesomeIcon icon={ faNewspaper } size={ 24 } color={ 'white' } />
                 <Text style={styles.iconText}>News</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:10}} onPress={gotoOSSPage}>
+              <TouchableOpacity style={{flexDirection: 'column', flex: 1,marginLeft:15}} onPress={gotoOSSPage}>
                 <FontAwesomeIcon icon={ faInfoCircle } size={ 24 } color={ 'white' } />
                 <Text style={styles.iconText}>About</Text>
               </TouchableOpacity>
