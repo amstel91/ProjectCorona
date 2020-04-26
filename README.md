@@ -38,3 +38,6 @@ bundletool build-apks --bundle app/build/outputs/bundle/release/app.aab --output
 ### To install on your device run the below command
 
 `bundletool install-apks --apks=~/Desktop/app.apks`
+
+### Application Screenshots
+
