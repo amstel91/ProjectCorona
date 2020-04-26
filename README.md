@@ -40,4 +40,5 @@ bundletool build-apks --bundle app/build/outputs/bundle/release/app.aab --output
 `bundletool install-apks --apks=~/Desktop/app.apks`
 
 ### Application Screenshots
+![Corona App Home](https://github.com/amstel91/ProjectCorona/blob/master/screenshots/HomeScreen.jpeg) ![Corona App World](https://github.com/amstel91/ProjectCorona/blob/master/screenshots/WorldStatsScreen.jpeg)
 
